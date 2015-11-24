@@ -42,6 +42,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreshFindsBlog.BLL\FreshFindsBlog.BLL.csproj">
+      <Project>{272304f1-4680-49bd-b6c1-898317e76470}</Project>
+      <Name>FreshFindsBlog.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreshFindsBlog.Data\FreshFindsBlog.Data.csproj">
+      <Project>{ed177295-0009-47e7-8eb0-0949ba979812}</Project>
+      <Name>FreshFindsBlog.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreshFindsBlog.Models\FreshFindsBlog.Models.csproj">
+      <Project>{c1134203-199b-4d89-8050-3dd1260c5a25}</Project>
+      <Name>FreshFindsBlog.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
