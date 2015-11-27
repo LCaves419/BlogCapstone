@@ -9,5 +9,6 @@ namespace MVCBlog.Data
     public class MVCBlogRepo
     {
 
+
     }
 }
