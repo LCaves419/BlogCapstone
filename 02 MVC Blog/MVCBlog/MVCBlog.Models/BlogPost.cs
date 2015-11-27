@@ -16,7 +16,6 @@ namespace MVCBlog.Models
         public int Approved { get; set; }
         public User User { get; set; }//has userlevel in it
         public Category Category { get; set; }
-        
 
     }
 }
