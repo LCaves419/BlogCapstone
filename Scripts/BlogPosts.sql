@@ -1,0 +1,32 @@
+USE [BlogCapstone]
+GO
+
+/****** Object:  Table [dbo].[BlogPosts]    Script Date: 11/27/2015 11:22:33 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[BlogPosts](
+	[BlogPostID] [int] IDENTITY(1,1) NOT NULL,
+	[Text] [varchar](max) NOT NULL,
+	[Date] [date] NOT NULL,
+	[CategoryID] [int] NOT NULL,
+	[HashTagsID] [int] NOT NULL,
+	[AdminID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+ CONSTRAINT [PK_BlogPosts] PRIMARY KEY CLUSTERED 
+(
+	[BlogPostID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
