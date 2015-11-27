@@ -39,9 +39,42 @@ create table BlogPosts (
 	BlogPostID int identity(1,1) primary key,
 	Title varchar(50) null,
 	Body varchar(max) not null,
-	PostDate date not null,
+	PostDate [date] not null,
 	CategoryID int foreign key references Categories(CategoryID) not null,
 	HashTagID int foreign key references HashTags(HashTagID) not null,
 	UserID int foreign key references Users(UserID) not null
 )
+go
+
+insert into Categories (CategoryName)
+	values ('On the Farm'),
+		('Daily Picks'),
+		('In the News'),
+		('Social Responsibility'),
+		('Just Because')
+go
+
+insert into HashTags (HashTagName)
+	values ('#savings'),
+		('#noGMO'),
+		('#freshfood'),
+		('#vegetarian'),
+		('#vegan'),
+		('#lifestyle'),
+		('#healthychoices')
+go
+
+insert into UserLevels (UserLevelName)
+	values ('Administrator'),
+		('Public Relations'),
+		('Public')
+go
+
+insert into Users (UserName, UserLevelID)
+	values ('FreshFindsDummy', 1),
+		('PublicRelationsPerson', 2)
+go
+
+insert into BlogPosts (Title, Body, PostDate, CategoryID, HashTagID, UserID)
+	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1, 1)
 go
