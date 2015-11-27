@@ -41,8 +41,14 @@ create table BlogPosts (
 	Body varchar(max) not null,
 	PostDate [date] not null,
 	CategoryID int foreign key references Categories(CategoryID) not null,
-	HashTagID int foreign key references HashTags(HashTagID) not null,
 	UserID int foreign key references Users(UserID) not null
+)
+go
+
+create table HashTagPosts (
+	HashTagID int foreign key references HashTags(HashTagID) not null,
+	BlogPostID int foreign key references BlogPosts(BlogPostID) not null,
+	primary key (HashTagID, BlogPostID)
 )
 go
 
@@ -75,6 +81,11 @@ insert into Users (UserName, UserLevelID)
 		('PublicRelationsPerson', 2)
 go
 
-insert into BlogPosts (Title, Body, PostDate, CategoryID, HashTagID, UserID)
-	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1, 1)
+insert into BlogPosts (Title, Body, PostDate, CategoryID, UserID)
+	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1)
+go
+
+insert into HashTagPosts (HashTagID, BlogPostID)
+	values (1, 1),
+		(6, 1)
 go
