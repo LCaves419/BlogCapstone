@@ -107,9 +107,15 @@ CREATE procedure [dbo].[GetAllBlogPostsOrderByCategory]
 as
 begin
 	select *
-	from BlogPosts bp inner join
-		Categories c
-			on bp.CategoryID = c.CategoryID
+	from BlogPosts bp 
+			inner join Categories c
+				on bp.CategoryID = c.CategoryID
+			inner join HashTagPosts htp
+				on htp.BlogPostID = bp.BlogPostID
+			inner join HashTags ht
+				on ht.HashTagID = htp.HashTagID
+			inner join Users u
+				on bp.UserID = u.UserID
 	order by c.CategoryName asc
 end
 go
