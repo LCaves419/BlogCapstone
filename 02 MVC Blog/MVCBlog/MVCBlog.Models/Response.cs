@@ -12,6 +12,7 @@ namespace MVCBlog.Models
         public string Message { get; set; }
         public BlogPost BlogPost { get; set; }
         public List<BlogPost> BlogPosts { get; set; }
+
         public Category Category { get; set; }
         public List< Category> Categories { get; set; }
         public HashTag HashTag { get; set; }
