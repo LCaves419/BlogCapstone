@@ -82,10 +82,34 @@ insert into Users (UserName, UserLevelID)
 go
 
 insert into BlogPosts (Title, Body, PostDate, CategoryID, UserID)
-	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1)
+	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1),
+		('Cyber Monday Deals', 'Best electronic deals on the web!', '2015-11-30', 5, 2)
 go
 
 insert into HashTagPosts (HashTagID, BlogPostID)
 	values (1, 1),
 		(6, 1)
+go
+
+-------------------------------------------------------------------------------
+-- STORED PROCEDURES --
+-------------------------------------------------------------------------------
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GetAllBlogPostsOrderByCategory]
+as
+begin
+	select *
+	from BlogPosts bp inner join
+		Categories c
+			on bp.CategoryID = c.CategoryID
+	order by c.CategoryName asc
+end
 go
