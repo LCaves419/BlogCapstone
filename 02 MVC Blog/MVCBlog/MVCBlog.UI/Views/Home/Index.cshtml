@@ -6,20 +6,35 @@
 
 <div class="jumbotron">
     <h1>Fresh Finds Blog</h1>
-   
+
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        @foreach (var posts in Model.BlogPosts)
-        {
-            <h4>
-                @posts.Category
-            </h4>
-            <p>
-                @posts.
-            </p>
-        }
+        <table class="table table-striped">
+            @foreach (var posts in Model.BlogPosts)
+            {
+                <div>
+                    <tr>
+                        <td>
+                            @posts.Category.CategoryName
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr>
+                        <td>
+                            @posts.Title
+                        </td>
+                    </tr>
 
+                    <tr>
+                        <td>
+                            @posts.Body
+                        </td>
+                    </tr>
+                </div>
+            }
+        </table>
     </div>
 </div>
