@@ -8,16 +8,16 @@ namespace MVCBlog.Models
 {
    public class Response
     {
-       public Response()
-       {
-           Category = new Category();
-           Categories = new List<Category>();
-            HashTag = new HashTag();
-            HashTags = new List<HashTag>();
-            User = new User();
-            BlogPost = new BlogPost();
-            BlogPosts = new List<BlogPost>();
-       }
+        //public Response()
+        //{
+        //    Category = new Category();
+        //    Categories = new List<Category>();
+        //    //    HashTag = new HashTag();
+        //    //    HashTags = new List<HashTag>();
+        //    //    User = new User();
+        //    //    BlogPost = new BlogPost();
+        //    //    BlogPosts = new List<BlogPost>();
+        //}
         public bool Success { get; set; }
         public string Message { get; set; }
         public BlogPost BlogPost { get; set; }

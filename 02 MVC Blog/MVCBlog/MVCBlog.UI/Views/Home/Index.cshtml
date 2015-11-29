@@ -1,4 +1,4 @@
-﻿@model MVCBlog.Models.Response
+﻿@model List<MVCBlog.Models.BlogPost>
 
 @{
     ViewBag.Title = "Home Page";
@@ -12,26 +12,26 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
-            @foreach (var posts in Model.BlogPosts)
+            @foreach (var post in Model)
             {
                 <div>
                     <tr>
                         <td>
-                            @posts.Category.CategoryName
+                            @post.Category.CategoryName
                         </td>
                     </tr>
                 </div>
                 <div>
                     <tr>
                         <td>
-                            @posts.Title
+                            @post.Title
                         </td>
                     </tr>
 
 
                     <tr>
                         <td>
-                            @posts.Body
+                            @post.Body
                         </td>
                     </tr>
                 </div>

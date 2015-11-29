@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVCBlog.BLL;
 using MVCBlog.Models;
+using MVCBlog.UI.Models;
 
 namespace MVCBlog.UI.Controllers
 {
@@ -17,9 +18,12 @@ namespace MVCBlog.UI.Controllers
         {
             _res = new Response();
             _ops = new MVCBlogOps();
-            _res = _ops.GetAllBlogPostFromRepo();
+            List<BlogPost> blogPosts  = new List<BlogPost>();
             
-            return View(_res);
+            _res = _ops.GetAllBlogPostFromRepo();
+            blogPosts = _res.BlogPosts;
+            
+            return View(blogPosts);
         }
 
         public ActionResult About()

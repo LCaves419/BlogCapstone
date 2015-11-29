@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using MVCBlog.Models;
 
-namespace MVCBlog.Models
+namespace MVCBlog.UI.Models
 {
-    public class BlogPost
+    public class BlogPostVM
     {
-        //public BlogPost()
-        //{
-        //    Category = new Category();
-        //    Categories = new List<Category>();
-        //    //    HashTag = new HashTag();
-        //    //    HashTags = new List<HashTag>();
-        //    //    User = new User();
-        //    //    BlogPosts = new List<BlogPost>();
-        //}
+        public BlogPostVM()
+        {
+            Category = new Category();
+            Categories = new List<Category>();
+            HashTag = new HashTag();
+            HashTags = new List<HashTag>();
+            User = new User();
+            BlogPosts = new List<BlogPost>();
+        }
         public int BlogPostID { get; set; }
         public string Title { get; set; }
 
@@ -30,10 +30,6 @@ namespace MVCBlog.Models
         public List<Category> Categories { get; set; }
         public List<HashTag> HashTags { get; set; }
         public List<BlogPost> BlogPosts { get; set; }
-
-
-
-
-
+       
     }
 }
