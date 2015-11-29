@@ -23,7 +23,7 @@ namespace MVCBlog.Data
 
         public List<BlogPost> GetAllBlogPosts()
         {
-            return _cn.Query<BlogPost>("GetAllBlogPosts", CommandType.StoredProcedure).ToList();
+            return _cn.Query<BlogPost>("GetAllBlogPostsOrderByCategory", CommandType.StoredProcedure).ToList();
         } 
 
     }
