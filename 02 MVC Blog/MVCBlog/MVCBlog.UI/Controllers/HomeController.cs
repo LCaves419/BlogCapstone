@@ -18,12 +18,12 @@ namespace MVCBlog.UI.Controllers
         {
             _res = new Response();
             _ops = new MVCBlogOps();
-            List<BlogPost> blogPosts  = new List<BlogPost>();
+            //List<BlogPost> blogPosts  = new List<BlogPost>();
             
             _res = _ops.GetAllBlogPostFromRepo();
-            blogPosts = _res.BlogPosts;
+            //blogPosts = _res.BlogPosts;
             
-            return View(blogPosts);
+            return View(_res);
         }
 
         public ActionResult About()
