@@ -13,21 +13,21 @@ namespace MVCBlog.Data
 {
     public class MVCBlogRepo
     {
-        private SqlConnection _cn;
+        //private SqlConnection _cn;
 
-        public MVCBlogRepo()
-        {
-            _cn = new SqlConnection(Settings.ConnectionString);
-        }
+        //public MVCBlogRepo()
+        //{
+        //    _cn = new SqlConnection(Settings.ConnectionString);
+        //}
 
 
         public List<BlogPost> GetAllBlogPosts()
         {
             List<BlogPost> posts = new List<BlogPost>();
 
-            using (_cn)
+            using (var _cn = new SqlConnection(Settings.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand();
+                SqlCommand cmd = _cn.CreateCommand();
                 cmd.CommandText = "GetAllBlogPostsOrderByCategory";
                 cmd.CommandType = CommandType.StoredProcedure;
 

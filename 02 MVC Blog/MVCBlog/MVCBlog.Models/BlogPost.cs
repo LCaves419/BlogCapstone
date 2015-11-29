@@ -8,15 +8,15 @@ namespace MVCBlog.Models
 {
     public class BlogPost
     {
-        //public BlogPost()
-        //{
-        //    Category = new Category();
-        //    Categories = new List<Category>();
-        //    //    HashTag = new HashTag();
-        //    //    HashTags = new List<HashTag>();
-        //    //    User = new User();
-        //    //    BlogPosts = new List<BlogPost>();
-        //}
+        public BlogPost()
+        {
+            Category = new Category();
+            Categories = new List<Category>();
+            HashTag = new HashTag();
+            HashTags = new List<HashTag>();
+            User = new User();
+            BlogPosts = new List<BlogPost>();
+        }
         public int BlogPostID { get; set; }
         public string Title { get; set; }
 
