@@ -6,11 +6,12 @@
 
 <div class="jumbotron">
     <h1>Fresh Finds Blog</h1>
-   
+
 </div>
 
 <div class="row">
     <div class="col-md-12">
+<<<<<<< HEAD
         @foreach (var posts in Model.BlogPosts)
         {
             <h4>
@@ -20,6 +21,32 @@
                 @posts.Title
             </p>
         }
+=======
+        <table class="table table-striped">
+            @foreach (var posts in Model.BlogPosts)
+            {
+                <div>
+                    <tr>
+                        <td>
+                            @posts.Category.CategoryName
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr>
+                        <td>
+                            @posts.Title
+                        </td>
+                    </tr>
+>>>>>>> ebbaf7ed2cbae693bd112e44ed7ec8b9f35b7567
 
+                    <tr>
+                        <td>
+                            @posts.Body
+                        </td>
+                    </tr>
+                </div>
+            }
+        </table>
     </div>
 </div>
