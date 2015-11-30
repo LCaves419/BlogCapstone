@@ -21,7 +21,7 @@ namespace MVCBlog.UI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("BlogCapstone", throwIfV1Schema: false)
         {
         }
 
