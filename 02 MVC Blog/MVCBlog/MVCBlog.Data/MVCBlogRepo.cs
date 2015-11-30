@@ -32,6 +32,7 @@ namespace MVCBlog.Data
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 _cn.Open();
+                //BlogPost post = new BlogPost();
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     BlogPost post = null;
