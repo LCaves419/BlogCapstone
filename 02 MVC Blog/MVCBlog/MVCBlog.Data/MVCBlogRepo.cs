@@ -43,13 +43,10 @@ namespace MVCBlog.Data
                         post.Title = dr.GetString(1);
                         post.Body = dr.GetString(2);
                         post.PostDate = dr.GetDateTime(3);
-                        post.User.UserID = dr.GetInt32(4);
-                        post.User.UserLevel.UserLevelID = dr.GetInt32(5);
-                        post.User.UserName = dr.GetString(6);
-                        post.Category.CategoryID = dr.GetInt32(7);
-                        post.Category.CategoryName = dr.GetString(8);
-                        //post.HashTag.HashTagID = dr.GetInt32(9);
-                        //post.HashTag.HashName = dr.GetString(10);
+                        post.Category.CategoryID = dr.GetInt32(4);
+                        post.Category.CategoryName = dr.GetString(5);
+                        //post.HashTag.HashTagID = dr.GetInt32(6);
+                        //post.HashTag.HashName = dr.GetString(7);
 
                         posts.Add(post);
 
