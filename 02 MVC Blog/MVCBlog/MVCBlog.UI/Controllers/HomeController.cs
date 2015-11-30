@@ -26,6 +26,18 @@ namespace MVCBlog.UI.Controllers
             return View(_res);
         }
 
+        //Displays TinyMCE Editor
+        public ActionResult CreatePostGet()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePostPost(TinyMceClass model)
+        {
+            return View(model);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
