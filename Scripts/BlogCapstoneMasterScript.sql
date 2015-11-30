@@ -22,26 +22,12 @@ create table HashTags (
 )
 go
 
-create table UserLevels (
-	UserLevelID int identity(1,1) primary key,
-	UserLevelName varchar(50) not null
-)
-go
-
-create table Users (
-	UserID int identity(1,1) primary key,
-	UserName varchar(50) not null,
-	UserLevelID int foreign key references UserLevels(UserLevelID) not null
-)
-go
-
 create table BlogPosts (
 	BlogPostID int identity(1,1) primary key,
 	Title varchar(50) null,
 	Body varchar(max) not null,
 	PostDate [date] not null,
-	CategoryID int foreign key references Categories(CategoryID) not null,
-	UserID int foreign key references Users(UserID) not null
+	CategoryID int foreign key references Categories(CategoryID) not null
 )
 go
 
@@ -70,20 +56,9 @@ insert into HashTags (HashTagName)
 		('#healthychoices')
 go
 
-insert into UserLevels (UserLevelName)
-	values ('Administrator'),
-		('Public Relations'),
-		('Public')
-go
-
-insert into Users (UserName, UserLevelID)
-	values ('FreshFindsDummy', 1),
-		('PublicRelationsPerson', 2)
-go
-
-insert into BlogPosts (Title, Body, PostDate, CategoryID, UserID)
-	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2, 1),
-		('Cyber Monday Deals', 'Best electronic deals on the web!', '2015-11-30', 5, 2)
+insert into BlogPosts (Title, Body, PostDate, CategoryID)
+	values ('Black Friday Deals', 'Come early for our best Black Friday deals!', '2015-11-24', 2),
+		('Cyber Monday Deals', 'Best electronic deals on the web!', '2015-11-30', 5)
 go
 
 insert into HashTagPosts (HashTagID, BlogPostID)
@@ -110,9 +85,6 @@ begin
 		bp.Title,
 		bp.Body,
 		bp.PostDate,
-		bp.UserID,
-		u.UserLevelID,
-		u.UserName,
 		bp.CategoryID,
 		c.CategoryName,
 		ht.HashTagID,
@@ -124,8 +96,6 @@ begin
 				on htp.BlogPostID = bp.BlogPostID
 			inner join HashTags ht
 				on ht.HashTagID = htp.HashTagID
-			inner join Users u
-				on bp.UserID = u.UserID
 	order by c.CategoryName asc
 end
 go
