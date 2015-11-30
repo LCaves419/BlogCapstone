@@ -61,5 +61,22 @@ namespace MVCBlog.Data
             return posts;
         }
 
+        public void CreateBlogPostDB(TinyMceClass mce)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var pnsm = new DynamicParameters();
+                pnsm.Add("@Body", mce.HtmlContent);
+
+
+
+
+
+
+
+
+            }
+        } 
+
     }
 }
