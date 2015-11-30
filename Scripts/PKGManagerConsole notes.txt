@@ -1,0 +1,47 @@
+MVCBLOG- Pkg manager console commands
+
+Each package is licensed to you by its owner. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may include dependencies which are governed by additional licenses. Follow the package source (feed) URL to determine any dependencies.
+
+Package Manager Console Host Version 3.0.0.0
+
+Type 'get-help NuGet' to see all available NuGet commands.
+
+PM> enable-migrations
+Checking if the context targets an existing database...
+System.InvalidOperationException: The connection string 'BlogCapstone' in the application's configuration file does not contain the required providerName attribute."
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_Connection()
+   at System.Data.Entity.Internal.LazyInternalContext.get_Connection()
+   at System.Data.Entity.Infrastructure.DbContextInfo..ctor(Type contextType, DbProviderInfo modelProviderInfo, AppConfig config, DbConnectionInfo connectionInfo, Func`1 resolver)
+   at System.Data.Entity.Migrations.DbMigrator..ctor(DbMigrationsConfiguration configuration, DbContext usersContext, DatabaseExistenceState existenceState, Boolean calledByCreateDatabase)
+   at System.Data.Entity.Migrations.DbMigrator..ctor(DbMigrationsConfiguration configuration)
+   at System.Data.Entity.Migrations.Design.MigrationScaffolder..ctor(DbMigrationsConfiguration migrationsConfiguration)
+   at System.Data.Entity.Migrations.Design.ToolingFacade.ScaffoldRunner.Run()
+   at System.AppDomain.DoCallBack(CrossAppDomainDelegate callBackDelegate)
+   at System.AppDomain.DoCallBack(CrossAppDomainDelegate callBackDelegate)
+   at System.Data.Entity.Migrations.Design.ToolingFacade.Run(BaseRunner runner)
+   at System.Data.Entity.Migrations.Design.ToolingFacade.ScaffoldInitialCreate(String language, String rootNamespace)
+   at System.Data.Entity.Migrations.EnableMigrationsCommand.<>c__DisplayClass2.<.ctor>b__0()
+   at System.Data.Entity.Migrations.MigrationsDomainCommand.Execute(Action command)
+The connection string 'BlogCapstone' in the application's configuration file does not contain the required providerName attribute."
+PM> enable-migrations
+Migrations have already been enabled in project 'MVCBlog.UI'. To overwrite the existing migrations configuration, use the -Force parameter.
+PM> enable-migrations -Force
+Checking if the context targets an existing database...
+Code First Migrations enabled for project MVCBlog.UI.
+PM> update-database
+Specify the '-Verbose' flag to view the SQL statements being applied to the target database.
+No pending explicit migrations.
+Unable to update database to match the current model because there are pending changes and automatic migration is disabled. Either write the pending model changes to a code-based migration or enable automatic migration. Set DbMigrationsConfiguration.AutomaticMigrationsEnabled to true to enable automatic migration.
+You can use the Add-Migration command to write the pending model changes to a code-based migration.
+PM> enable-migrations
+Checking if the context targets an existing database...
+Code First Migrations enabled for project MVCBlog.UI.
+PM> update-database
+Specify the '-Verbose' flag to view the SQL statements being applied to the target database.
+No pending explicit migrations.
+Applying automatic migration: 201511301558512_AutomaticMigration.
+Running Seed method.
+PM> 
