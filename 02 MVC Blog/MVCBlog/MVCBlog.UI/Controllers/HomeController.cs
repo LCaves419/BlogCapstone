@@ -33,10 +33,10 @@ namespace MVCBlog.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePostPost(TinyMceClass mce)
+        public ActionResult CreatePostPost(BlogPost blogPost)
         {
             _res = new Response();
-             _res = _ops.SaveBlogPostToRepo(mce);
+            _res = _ops.SaveBlogPostToRepo(blogPost);
             return View(_res);
         }
 

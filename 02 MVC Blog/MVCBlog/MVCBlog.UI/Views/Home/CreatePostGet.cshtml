@@ -1,4 +1,4 @@
-﻿@model MVCBlog.Models.TinyMceClass
+﻿@model MVCBlog.Models.BlogPost
 @{
     ViewBag.Title = "CreatePostGet";
 }
@@ -44,7 +44,7 @@
         @Html.AntiForgeryToken()
         <div>
             <!-- This will contain your HtmlContent and use the TinyMCE editor-->
-            @Html.TextAreaFor(model => model.HtmlContent)
+            @Html.TextAreaFor(model => model.Mce.Body)
 
             <input type="submit" value="Create" />
         </div>
