@@ -12,7 +12,7 @@ namespace MVCBlog.Models
         {
             Category = new Category();
             //Categories = new List<Category>();
-            HashTag = new HashTag();
+            //HashTag = new HashTag();
             HashTags = new List<HashTag>();
             User = new User();
             //BlogPosts = new List<BlogPost>();

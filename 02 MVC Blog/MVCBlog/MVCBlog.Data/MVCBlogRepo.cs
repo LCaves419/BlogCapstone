@@ -46,9 +46,10 @@ namespace MVCBlog.Data
                             if
                             else
                         */
-                        var item = posts.Where(p => p.BlogPostID == testPostID);
+                        var item = posts.Where(p => p.BlogPostID == testPostID).FirstOrDefault();
+                        var hashTag = new HashTag();
 
-                        if (item != null)
+                        if (item == null)
                         {
                             post.BlogPostID = testPostID;
                             post.Title = dr.GetString(1);
@@ -56,11 +57,13 @@ namespace MVCBlog.Data
                             post.PostDate = dr.GetDateTime(3);
                             post.Category.CategoryID = dr.GetInt32(4);
                             post.Category.CategoryName = dr.GetString(5);
-                            post.HashTag.HashTagID = dr.GetInt32(6);
-                            post.HashTag.HashName = dr.GetString(7);
+                            //hashTag.HashTagID = dr.GetInt32(6);
+                            //hashTag.HashName = dr.GetString(7);
+                            //post.HashTags.Add(hashTag);
+                            //posts.Add(post);
                         }
 
-                        var hashTag = new HashTag();
+                        
                         hashTag.HashTagID = dr.GetInt32(6);
                         hashTag.HashName = dr.GetString(7);
 

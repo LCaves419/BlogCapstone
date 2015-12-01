@@ -34,6 +34,14 @@
                             @post.Body
                         </td>
                     </tr>
+                    <tr>
+                       @foreach (var name in post.HashTags)
+                       {
+                        <td>
+                            @name.HashName
+                        </td>
+                       }
+                    </tr>
                 </div>
             }
         </table>
