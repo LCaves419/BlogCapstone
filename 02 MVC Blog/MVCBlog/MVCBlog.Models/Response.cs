@@ -17,6 +17,7 @@ namespace MVCBlog.Models
             User = new User();
             BlogPost = new BlogPost();
             BlogPosts = new List<BlogPost>();
+            Mce = new TinyMceClass();
         }
         public bool Success { get; set; }
         public string Message { get; set; }
@@ -29,6 +30,7 @@ namespace MVCBlog.Models
         public List<HashTag> HashTags { get; set; } 
         public User User { get; set; }
         public UserLevel UserLevel { get; set; }
+        public TinyMceClass Mce { get; set; }
 
     }
 }

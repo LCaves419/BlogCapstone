@@ -13,14 +13,6 @@ namespace MVCBlog.Data
 {
     public class MVCBlogRepo
     {
-        //private SqlConnection _cn;
-
-        //public MVCBlogRepo()
-        //{
-        //    _cn = new SqlConnection(Settings.ConnectionString);
-        //}
-
-
         public List<BlogPost> GetAllBlogPosts()
         {
             List<BlogPost> posts = new List<BlogPost>();
@@ -41,11 +33,6 @@ namespace MVCBlog.Data
                         post = new BlogPost();
                         var testPostID = dr.GetInt32(0);
 
-                        /*
-                            linq
-                            if
-                            else
-                        */
                         var item = posts.Where(p => p.BlogPostID == testPostID).FirstOrDefault();
                         var hashTag = new HashTag();
 
@@ -57,13 +44,8 @@ namespace MVCBlog.Data
                             post.PostDate = dr.GetDateTime(3);
                             post.Category.CategoryID = dr.GetInt32(4);
                             post.Category.CategoryName = dr.GetString(5);
-                            //hashTag.HashTagID = dr.GetInt32(6);
-                            //hashTag.HashName = dr.GetString(7);
-                            //post.HashTags.Add(hashTag);
-                            //posts.Add(post);
+                            
                         }
-
-                        
                         hashTag.HashTagID = dr.GetInt32(6);
                         hashTag.HashName = dr.GetString(7);
 
@@ -73,8 +55,6 @@ namespace MVCBlog.Data
                         
                     }
                 }
-
-
             }
             return posts;
         }

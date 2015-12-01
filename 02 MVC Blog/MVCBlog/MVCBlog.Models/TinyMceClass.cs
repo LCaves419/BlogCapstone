@@ -12,7 +12,7 @@ namespace MVCBlog.Models
     {
         //Attribute allows HTML Content to be sent up.
         [AllowHtml]
-        public string HtmlContent { get; set; }
+        public string Body { get; set; }
 
 
 

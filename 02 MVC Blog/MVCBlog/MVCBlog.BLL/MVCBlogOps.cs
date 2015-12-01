@@ -30,6 +30,14 @@ namespace MVCBlog.BLL
             return _response;
         }
 
+        public Response SaveBlogPostToRepo(TinyMceClass mce)
+        {
+            _repo.CreateBlogPostDB(mce);
+
+            return _response;
+        }
+
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿
-@model MVCBlog.Models.TinyMceClass
+@model MVCBlog.Models.Response
 
 @{
     ViewBag.Title = "CreatePostPost";
@@ -7,7 +7,7 @@
 
 <h2>CreatePostPost</h2>
 
-<p>@Model.HtmlContent</p>
+<p>@Model.Mce.Body</p>
 
 
 
