@@ -12,7 +12,7 @@ namespace MVCBlog.Models
         {
             Category = new Category();
             //Categories = new List<Category>();
-            //HashTag = new HashTag();
+            HashTag = new HashTag();
             HashTags = new List<HashTag>();
             User = new User();
             //BlogPosts = new List<BlogPost>();
@@ -23,7 +23,7 @@ namespace MVCBlog.Models
         public string Body { get; set; }
         public DateTime PostDate { get; set; }
 
-       // public HashTag HashTag { get; set; }
+        public HashTag HashTag { get; set; }
         public int Approved { get; set; }
         public User User { get; set; }//has userlevel in it
         public Category Category { get; set; }
