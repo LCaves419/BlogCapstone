@@ -1,4 +1,4 @@
-﻿@model MVCBlog.Models.BlogPost
+﻿@model MVCBlog.UI.Models.BlogPostVM
 @{
     ViewBag.Title = "CreatePostGet";
 }
@@ -21,7 +21,7 @@
             //force_p_newlines: false,
             //forced_root_block: "",
 
-         
+
             // Theme options
             theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
             theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
@@ -38,15 +38,44 @@
     </script>
 </head>
 <body>
-    <!-- This will automatically post to your Index method (that is decorated with a HttpPost attribute) -->
-    @using (Html.BeginForm("CreatePostPost","Home", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div>
-            <!-- This will contain your HtmlContent and use the TinyMCE editor-->
-            @Html.TextAreaFor(model => model.Mce.Body)
+    <div class="container">
+        <!-- This will automatically post to your Index method (that is decorated with a HttpPost attribute) -->
+        @using (Html.BeginForm("CreatePostPost", "Home", FormMethod.Post))
+        {
+            //@Html.AntiForgeryToken()
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="title" placeholder="Title"/>
+                </div>
+            </div>
 
-            <input type="submit" value="Create" />
-        </div>
-    }
+            <div class="form-group">
+                <label class="col-lg-2 control-label">HashTags</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="hashTags" placeholder="HashTags"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Category</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("category.CategoryID", Model.categories)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <!-- This will contain your HtmlContent and use the TinyMCE editor-->
+                    @Html.TextAreaFor(model => model.blogPost.Mce.Body)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
 </body>

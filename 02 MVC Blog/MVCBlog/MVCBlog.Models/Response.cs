@@ -25,7 +25,7 @@ namespace MVCBlog.Models
         public List<BlogPost> BlogPosts { get; set; }
 
         public Category Category { get; set; }
-        public List< Category> Categories { get; set; }
+        public List<Category> Categories { get; set; }
         public HashTag HashTag { get; set; }
         public List<HashTag> HashTags { get; set; } 
         public User User { get; set; }

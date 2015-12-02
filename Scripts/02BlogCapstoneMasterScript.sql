@@ -111,6 +111,7 @@ begin
 		bp.Body,
 		bp.PostDate,
 		bp.CategoryID,
+		bp.[Status],
 		c.CategoryName,
 		ht.HashTagID,
 		ht.HashTagName,

@@ -18,10 +18,8 @@ namespace MVCBlog.UI.Controllers
         {
             _res = new Response();
             _ops = new MVCBlogOps();
-           // List<BlogPost> blogPosts  = new List<BlogPost>();
             
             _res = _ops.GetAllBlogPostFromRepo();
-            //blogPosts = _res.BlogPosts;
             
             return View(_res);
         }
@@ -29,13 +27,22 @@ namespace MVCBlog.UI.Controllers
         //Displays TinyMCE Editor
         public ActionResult CreatePostGet()
         {
-            return View();
+            _ops = new MVCBlogOps();
+            BlogPostVM blogPostVM = new BlogPostVM();
+            _res = new Response();
+
+            _res = _ops.GetAllCategoriesFromRepo();
+            blogPostVM.CreateCategoriesList(_res.Categories);
+
+            return View(blogPostVM);
         }
 
         [HttpPost]
         public ActionResult CreatePostPost(BlogPost blogPost)
         {
             _res = new Response();
+            blogPost.PostDate = DateTime.Today;
+            // blogPost.Status = 1;
             _res = _ops.SaveBlogPostToRepo(blogPost);
             return View(_res);
         }

@@ -32,12 +32,28 @@ namespace MVCBlog.BLL
 
         public Response SaveBlogPostToRepo(BlogPost blogPost)
         {
-            _repo.CreateBlogPostDB(blogPost);
+            //_repo.CreateBlogPostDB(blogPost);
 
             return _response;
         }
 
+        public Response GetAllCategoriesFromRepo()
+        {
+            _response = new Response();
 
+            var categories = _repo.GetAllCategories();
+
+            if (categories != null)
+            {
+                _response.Success = true;
+                _response.Categories = categories;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not vaild data";
+            return _response;
+        }
 
 
 

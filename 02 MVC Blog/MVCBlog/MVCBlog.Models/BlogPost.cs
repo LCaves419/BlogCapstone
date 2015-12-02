@@ -22,7 +22,7 @@ namespace MVCBlog.Models
         public DateTime PostDate { get; set; }
 
         public HashTag HashTag { get; set; }
-        public int Approved { get; set; }
+        public int Status { get; set; }
         public User User { get; set; }//has userlevel in it
         public Category Category { get; set; }
         public List<HashTag> HashTags { get; set; }
