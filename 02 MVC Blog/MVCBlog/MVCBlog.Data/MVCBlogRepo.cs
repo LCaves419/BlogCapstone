@@ -44,7 +44,9 @@ namespace MVCBlog.Data
                             post.PostDate = dr.GetDateTime(3);
                             post.Category.CategoryID = dr.GetInt32(4);
                             post.Category.CategoryName = dr.GetString(5);
-                            
+                            post.User.UserID = dr.GetString(8);
+                            post.User.UserName = dr.GetString(9);
+
                         }
                         hashTag.HashTagID = dr.GetInt32(6);
                         hashTag.HashName = dr.GetString(7);
