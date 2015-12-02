@@ -40,11 +40,10 @@ namespace MVCBlog.UI.Controllers
         [HttpPost]
         public ActionResult CreatePostPost(BlogPost blogPost)
         {
-            _res = new Response();
-            blogPost.PostDate = DateTime.Today;
+            //blogPostVM.blogPost.PostDate = DateTime.Today;
             // blogPost.Status = 1;
-            _res = _ops.SaveBlogPostToRepo(blogPost);
-            return View(_res);
+            _ops.SaveBlogPostToRepo(blogPost);
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()

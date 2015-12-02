@@ -59,8 +59,6 @@ namespace MVCBlog.Data
                         {
                             item.HashTags.Add(hashTag);
                         }
-
-
                     }
                 }
             }
@@ -80,56 +78,52 @@ namespace MVCBlog.Data
 
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "BlogPostInsert";
-                cmd.CommandType = CommandType.StoredProcedure;
+                var p = new DynamicParameters();
+                p.Add("@Title", blogPost.Title);
+                p.Add("@Mce", blogPost.Mce.Body);
+                p.Add("@Category", blogPost.Category);
 
-                cmd.CommandText = "HashTagInsert";
-                cmd.CommandType = CommandType.StoredProcedure;
+                p.Add("BlogPostID",DbType.Int32, direction: ParameterDirection.Output);
+                cn.Execute("BlogPostInsert", p, commandType: CommandType.StoredProcedure);
 
-                cmd.CommandText = "HashTagPostInsert";
-                cmd.CommandType = CommandType.StoredProcedure;
+                //var blogPostID = p.Get<int>("BlogPostID");
 
-                cmd.Parameters.AddWithValue("@blogPost", blogPost);
-
-                cn.Open();
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                foreach (var hashTag in blogPost.HashTags)
                 {
-                    while (dr.Read())
-                    {
-                        BlogPost post = new BlogPost();
-                        var hashTag = new HashTag();
-                        post.BlogPostID = dr.GetInt32(0);
-                        post.Title = dr.GetString(1);
-                        post.Body = dr.GetString(2);
-                        post.PostDate = dr.GetDateTime(3);
-                        post.Category.CategoryID = dr.GetInt32(4);
-                        post.Category.CategoryName = dr.GetString(5);
-                        post.User.UserID = dr.GetString(8);
-                        post.User.UserName = dr.GetString(9);
-                        hashTag.HashTagID = dr.GetInt32(6);
-                        hashTag.HashName = dr.GetString(7);
+                    var p2 = new DynamicParameters();
+                    p2.Add("@HashTag", hashTag.HashName);
+                    p2.Add("@HashTagID", hashTag.HashTagID);
+                    cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
 
-                        //item.HashTags.Add(hashTag);
-
-
-                        post.HashTags.Add(hashTag);
-
-                        //posts.Add(post);
-                    }
+                    var p3 = new DynamicParameters();
+                    p3.Add("@HashTagID", hashTag.HashTagID);
+                    cn.Execute("HashTagPostInsert", p3, commandType: CommandType.StoredProcedure);
 
                 }
+
+                    var p4 = new DynamicParameters();
+                    p.Add("@BlogPostID", blogPost.BlogPostID );
+                    cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
+               
             }
-
-
-
-
-
-
-
+            
 
         }
     }
-
 }
 
+
+
+//  SqlCommand cmd = cn.CreateCommand();
+//cmd.CommandText = "BlogPostInsert";
+//                cmd.CommandType = CommandType.StoredProcedure;
+
+//                cmd.CommandText = "HashTagInsert";
+//                cmd.CommandType = CommandType.StoredProcedure;
+
+//                cmd.CommandText = "HashTagPostInsert";
+//                cmd.CommandType = CommandType.StoredProcedure;
+
+//                cmd.Parameters.AddWithValue("@blogPost", blogPost);
+
+//                cn.Open();

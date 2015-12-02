@@ -32,7 +32,7 @@ namespace MVCBlog.BLL
 
         public Response SaveBlogPostToRepo(BlogPost blogPost)
         {
-            //_repo.CreateBlogPostDB(blogPost);
+            _repo.CreateBlogPostDB(blogPost);
 
             return _response;
         }
