@@ -24,7 +24,7 @@ namespace MVCBlog.Data
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                //BlogPost post = new BlogPost();
+
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
@@ -81,7 +81,7 @@ namespace MVCBlog.Data
 
 
             }
-        } 
+        }
 
     }
 }
