@@ -22,7 +22,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER procedure [dbo].[BlogPostInsert] (
+Create procedure [dbo].[BlogPostInsert] (
 	@Title varchar(50),
 	@Body varchar(max),
 	@PostDate date,
@@ -48,7 +48,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER procedure [dbo].[HashTagInsert] (
+Create procedure [dbo].[HashTagInsert] (
 	@HashTagName varchar(50),
 	@HashTagID int output
 )
