@@ -17,13 +17,13 @@ namespace MVCBlog.Data
         {
             List<BlogPost> posts = new List<BlogPost>();
 
-            using (var _cn = new SqlConnection(Settings.ConnectionString))
+            using (var cn = new SqlConnection(Settings.ConnectionString))
             {
-                SqlCommand cmd = _cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "GetAllBlogPostsOrderByCategory";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                _cn.Open();
+                cn.Open();
                 //BlogPost post = new BlogPost();
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {

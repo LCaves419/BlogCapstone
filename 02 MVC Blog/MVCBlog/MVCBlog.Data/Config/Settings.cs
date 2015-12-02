@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVCBlog.Data.Config
 {
-    public class Settings
+    public static class Settings
     {
         private static string _connectionString;
 
@@ -17,7 +17,7 @@ namespace MVCBlog.Data.Config
             {
                 if (string.IsNullOrEmpty(_connectionString))
                 {
-                    _connectionString = ConfigurationManager.ConnectionStrings["BlogCapstone"].ConnectionString;
+                    _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 }
 
                 return _connectionString;
