@@ -17,31 +17,42 @@
                 <div>
                     <tr>
                         <td>
-                            @post.Category.CategoryName
+                            CATEGORY: @post.Category.CategoryName
                         </td>
                     </tr>
                 </div>
                 <div>
                     <tr>
                         <td>
-                            @post.Title
+                            TITLE: @post.Title
+                            USER ID: @post.User.UserID
+                            USER NAME: @post.User.UserName
                         </td>
+                        @*<td>
+                            USER ID: @post.User.UserID
+                        </td>
+                        <td>
+                            USER NAME: @post.User.UserName
+                        </td>*@
                     </tr>
 
 
                     <tr>
                         <td>
-                            @post.Body
+                            TEXT: @post.Body
                         </td>
+
                     </tr>
                     <tr>
-                       @foreach (var name in post.HashTags)
-                       {
                         <td>
-                            @name.HashName
+                            HASHTAG:
+                            @foreach (var name in post.HashTags)
+                            {
+                                @name.HashName
+                            }
                         </td>
-                       }
                     </tr>
+
                 </div>
             }
         </table>

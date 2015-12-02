@@ -22,7 +22,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER procedure [dbo].[BlogPostInsert] (
+CREATE procedure [dbo].[BlogPostInsert] (
 	@Title varchar(50),
 	@Body varchar(max),
 	@PostDate date,
@@ -48,7 +48,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER procedure [dbo].[HashTagInsert] (
+CREATE procedure [dbo].[HashTagInsert] (
 	@HashTagName varchar(50),
 	@HashTagID int output
 )
@@ -69,7 +69,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER procedure [dbo].[HashTagPostInsert] (
+CREATE procedure [dbo].[HashTagPostInsert] (
 	@HashTagID int,
 	@BlogPostID int
 )
@@ -77,5 +77,39 @@ as
 begin
 	insert into HashTagPosts (HashTagID, BlogPostID)
 		values (@HashTagID, @BlogPostID)
+end
+GO
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER procedure [dbo].[GetAllBlogPostsOrderByCategory]
+as
+begin
+	select bp.BlogPostID,
+		bp.Title,
+		bp.Body,
+		bp.PostDate,
+		bp.CategoryID,
+		c.CategoryName,
+		ht.HashTagID,
+		ht.HashTagName,
+		anu.Id,
+		anu.UserName
+	from BlogPosts bp 
+			inner join Categories c
+				on bp.CategoryID = c.CategoryID
+			inner join HashTagPosts htp
+				on htp.BlogPostID = bp.BlogPostID
+			inner join HashTags ht
+				on ht.HashTagID = htp.HashTagID
+			inner join AspNetUsers anu
+				on bp.UserID = anu.Id
+	order by c.CategoryName asc
 end
 GO

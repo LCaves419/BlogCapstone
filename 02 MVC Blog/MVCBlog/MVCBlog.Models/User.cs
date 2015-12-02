@@ -13,7 +13,7 @@ namespace MVCBlog.Models
             UserLevel = new UserLevel();
         }
 
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string UserName { get; set; }
         public UserLevel UserLevel { get; set; }
     }
