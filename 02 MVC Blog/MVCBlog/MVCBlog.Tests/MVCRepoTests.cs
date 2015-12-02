@@ -21,7 +21,7 @@ namespace MVCBlog.Tests
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
                 var cmd = new SqlCommand();
-                cmd.CommandText = "SELECT COUNT(*) FROM BlogPosts bp INNER JOIN HashTagPosts htp ON bp.BlogPostID = htp.BlogPostID";
+                cmd.CommandText = "SELECT COUNT(BlogPostID) FROM BlogPosts";
                 cmd.Connection = cn;
 
                 cn.Open();
