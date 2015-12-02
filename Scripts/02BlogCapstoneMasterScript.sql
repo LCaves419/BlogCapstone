@@ -14,6 +14,8 @@ alter table BlogPosts
 add [Status] int
 go
 
+----------------------------------------------------------
+
 USE [BlogCapstone]
 GO
 
@@ -40,6 +42,8 @@ begin
 end
 GO
 
+----------------------------------------------------------------------------------
+
 USE [BlogCapstone]
 GO
 
@@ -61,6 +65,8 @@ begin
 end
 GO
 
+--------------------------------------------------------------------------
+
 USE [BlogCapstone]
 GO
 
@@ -79,6 +85,8 @@ begin
 		values (@HashTagID, @BlogPostID)
 end
 GO
+
+--------------------------------------------------------------------------
 
 USE [BlogCapstone]
 GO
@@ -111,5 +119,83 @@ begin
 			inner join AspNetUsers anu
 				on bp.UserID = anu.Id
 	order by c.CategoryName asc
+end
+GO
+
+-----------------------------------------------------------
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GetAllHashTags]
+as
+begin
+	select *
+	from HashTags
+end
+GO
+
+----------------------------------------------
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GetAllCategories]
+as
+begin
+	select *
+	from Categories
+end
+GO
+
+-------------------------------------------------
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GetCategoryByID] (
+	@CategoryID int
+)
+as
+begin
+	select *
+	from Categories
+	where CategoryID = @CategoryID
+end
+GO
+
+--------------------------------------------------
+
+USE [BlogCapstone]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GetHashTagByID] (
+	@HashTagID int
+)
+as
+begin
+	select *
+	from HashTags
+	where HashTagID = @HashTagID
 end
 GO
