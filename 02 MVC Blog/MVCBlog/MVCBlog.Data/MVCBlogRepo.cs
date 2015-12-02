@@ -27,17 +27,20 @@ namespace MVCBlog.Data
                 //BlogPost post = new BlogPost();
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    BlogPost post = null;
                     while (dr.Read())
                     {
-                        post = new BlogPost();
+                        var hashTag = new HashTag();
+
+                        hashTag.HashTagID = dr.GetInt32(6);
+                        hashTag.HashName = dr.GetString(7);
+
                         var testPostID = dr.GetInt32(0);
 
                         var item = posts.Where(p => p.BlogPostID == testPostID).FirstOrDefault();
-                        var hashTag = new HashTag();
 
                         if (item == null)
                         {
+                            BlogPost post = new BlogPost();
                             post.BlogPostID = testPostID;
                             post.Title = dr.GetString(1);
                             post.Body = dr.GetString(2);
@@ -47,14 +50,16 @@ namespace MVCBlog.Data
                             post.User.UserID = dr.GetString(8);
                             post.User.UserName = dr.GetString(9);
 
-                        }
-                        hashTag.HashTagID = dr.GetInt32(6);
-                        hashTag.HashName = dr.GetString(7);
+                            post.HashTags.Add(hashTag);
 
-                        post.HashTags.Add(hashTag);
-                        
-                        posts.Add(post);
-                        
+                            posts.Add(post);
+                        }
+                        else
+                        {
+                            item.HashTags.Add(hashTag);
+                        }
+
+
                     }
                 }
             }
