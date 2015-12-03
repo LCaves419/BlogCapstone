@@ -1,4 +1,5 @@
-﻿@model MVCBlog.UI.Models.BlogPostVM
+﻿@using System.Collections.Specialized
+@model MVCBlog.UI.Models.BlogPostVM
 @{
     ViewBag.Title = "CreatePostGet";
 }
@@ -33,7 +34,7 @@
             theme_advanced_resizing: true,
 
             // Example content CSS (should be your site CSS)
-            content_css: "css/example.css",
+            content_css: "css/example.css"
         });
     </script>
 </head>
@@ -46,15 +47,16 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">Title</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="title" placeholder="Title"/>
+                    <input type="text" class="form-control" name="title" placeholder="Title" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-2 control-label">HashTags</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" name="hashTags" placeholder="HashTags"/>
-                    @Html.TextBoxFor(model => model.blogPost.HashTags)
+                    @*<input type="text" id="myTags" class="form-control" name="hashTags" placeholder="HashTags" />*@
+                    @*@Html.TextBoxFor(model => model.blogPost.HashTags)*@
+                    <ul id="myTags"></ul>
                 </div>
             </div>
 
@@ -79,4 +81,12 @@
             </div>
         }
     </div>
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+        <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <script src="~/Scripts/tag-it.js" type="text/javascript" charset="utf-8"></script>
+        <script src="~/Scripts/other/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+    }
 </body>
