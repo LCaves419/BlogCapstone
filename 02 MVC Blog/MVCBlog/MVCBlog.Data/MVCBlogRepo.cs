@@ -94,12 +94,13 @@ namespace MVCBlog.Data
                 foreach (var hashTag in blogPost.HashTags)
                 {
                     var p2 = new DynamicParameters();
-                    p2.Add("@HashTag", hashTag.HashName);
-                    p2.Add("@HashTagID", hashTag.HashTagID);
+                    p2.Add("@HashTagName", hashTag.HashName);
+                    p2.Add("@HashTagID", DbType.Int32, direction: ParameterDirection.Output);
                     cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
+                    var hashTagID = p2.Get<int>("HashTagID");
 
                     var p3 = new DynamicParameters();
-                    p3.Add("@HashTagID", hashTag.HashTagID);
+                    p3.Add("@HashTagID", hashTagID);
                     p3.Add("@BlogPostID", blogPostID);
                     cn.Execute("HashTagPostInsert", p3, commandType: CommandType.StoredProcedure);
 
