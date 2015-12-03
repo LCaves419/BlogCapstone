@@ -42,27 +42,22 @@ namespace MVCBlog.UI.Controllers
         [HttpPost]
         public ActionResult CreatePostPost(BlogPostVM blogPostVM)
         {
-            //blogPostVM.blogPost.PostDate = DateTime.Today;
-            // blogPost.Status = 1;
             _ops = new MVCBlogOps();
 
             var blogPost = new BlogPost();
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = userManager.FindById(User.Identity.GetUserId());
             blogPost.User.UserID = user.Id;
-
-
             blogPost.Title = blogPostVM.blogPost.Title;
+            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
+            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
+
             foreach (var item in blogPostVM.tags)
             {
                 HashTag hashTag =  new HashTag();
-                hashTag.HashName = item;
+                hashTag.HashTagName = item;
                 blogPost.HashTags.Add(hashTag);
             }
-
-            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
-            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
-          
             _ops.SaveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index");

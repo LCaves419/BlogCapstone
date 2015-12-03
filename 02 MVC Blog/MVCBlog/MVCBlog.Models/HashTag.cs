@@ -9,7 +9,7 @@ namespace MVCBlog.Models
     public class HashTag
     {
         public int HashTagID { get; set; }
-        public string HashName { get; set; }
+        public string HashTagName { get; set; }
 
     }
 }

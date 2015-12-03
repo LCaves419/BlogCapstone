@@ -13,6 +13,8 @@ namespace MVCBlog.Data
 {
     public class MVCBlogRepo
     {
+        private List<HashTag> _hashTags;
+
         public List<BlogPost> GetAllBlogPosts()
         {
             List<BlogPost> posts = new List<BlogPost>();
@@ -32,7 +34,7 @@ namespace MVCBlog.Data
                         var hashTag = new HashTag();
 
                         hashTag.HashTagID = dr.GetInt32(7);
-                        hashTag.HashName = dr.GetString(8);
+                        hashTag.HashTagName = dr.GetString(8);
 
                         var testPostID = dr.GetInt32(0);
 
@@ -86,32 +88,46 @@ namespace MVCBlog.Data
                 p.Add("@PostDate", DateTime.Today);
                 p.Add("@Status", blogPost.Status);
 
-                p.Add("@BlogPostID",DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@BlogPostID", DbType.Int32, direction: ParameterDirection.Output);
                 cn.Execute("BlogPostInsert", p, commandType: CommandType.StoredProcedure);
 
-               var blogPostID = p.Get<int>("BlogPostID");
+                var blogPostID = p.Get<int>("BlogPostID");
 
-                foreach (var hashTag in blogPost.HashTags)
+                _hashTags = cn.Query<HashTag>("GetAllHashTags", commandType: CommandType.StoredProcedure).ToList();
+
+                //var item = HashTags.Where(p => p.BlogPostID == testPostID).FirstOrDefault();
+
+                foreach (var hashTag in blogPost.HashTags) //new user hashtags
                 {
-                    var p2 = new DynamicParameters();
-                    p2.Add("@HashTagName", hashTag.HashName);
-                    p2.Add("@HashTagID", DbType.Int32, direction: ParameterDirection.Output);
-                    cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
-                    var hashTagID = p2.Get<int>("HashTagID");
 
-                    var p3 = new DynamicParameters();
-                    p3.Add("@HashTagID", hashTagID);
-                    p3.Add("@BlogPostID", blogPostID);
-                    cn.Execute("HashTagPostInsert", p3, commandType: CommandType.StoredProcedure);
+                    var ht = _hashTags.FirstOrDefault(h => h.HashTagName == hashTag.HashTagName);
+                    var hashTagID = 0;
+                    if (ht == null)
+                    {
+                        var p2 = new DynamicParameters();
+                        p2.Add("@HashTagName", hashTag.HashTagName);
+                        p2.Add("@HashTagID", DbType.Int32, direction: ParameterDirection.Output);
+                        cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
+                        hashTagID = p2.Get<int>("HashTagID");
+                        _hashTags.Add(new HashTag() { HashTagID = hashTagID, HashTagName = hashTag.HashTagName });
+                    }
+                    else
+                    {
+                        hashTagID = ht.HashTagID;
+                    }
+                    var p4 = new DynamicParameters();
+
+
+                    p4.Add("@HashTagID", hashTagID);
+                    p4.Add("@BlogPostID", blogPostID);
+                    cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
+
+
 
                 }
 
-                    //var p4 = new DynamicParameters();
-                    
-                    //cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
-               
             }
-            
+
 
         }
     }
@@ -119,16 +135,3 @@ namespace MVCBlog.Data
 
 
 
-//  SqlCommand cmd = cn.CreateCommand();
-//cmd.CommandText = "BlogPostInsert";
-//                cmd.CommandType = CommandType.StoredProcedure;
-
-//                cmd.CommandText = "HashTagInsert";
-//                cmd.CommandType = CommandType.StoredProcedure;
-
-//                cmd.CommandText = "HashTagPostInsert";
-//                cmd.CommandType = CommandType.StoredProcedure;
-
-//                cmd.Parameters.AddWithValue("@blogPost", blogPost);
-
-//                cn.Open();
