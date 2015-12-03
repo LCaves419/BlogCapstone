@@ -55,8 +55,9 @@ namespace MVCBlog.UI.Controllers
 
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
             blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
-
+          
             _ops.SaveBlogPostToRepo(blogPost);
+
             return RedirectToAction("Index");
         }
 
