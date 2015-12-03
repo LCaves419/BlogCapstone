@@ -45,7 +45,16 @@ namespace MVCBlog.UI.Controllers
             var blogPost = new BlogPost();
 
             blogPost.Title = blogPostVM.blogPost.Title;
+            foreach (var item in blogPostVM.tags)
+            {
+                HashTag hashTag =  new HashTag();
+                hashTag.HashName = item;
+                blogPost.HashTags.Add(hashTag);
+            }
+
+
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
+            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
 
             _ops.SaveBlogPostToRepo(blogPost);
             return RedirectToAction("Index");

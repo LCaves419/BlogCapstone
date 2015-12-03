@@ -26,6 +26,7 @@ namespace MVCBlog.Models
         public User User { get; set; }//has userlevel in it
         public Category Category { get; set; }
         public List<HashTag> HashTags { get; set; }
+        public List<string> tags { get; set; } 
 
         public TinyMceClass Mce { get; set; }
 
