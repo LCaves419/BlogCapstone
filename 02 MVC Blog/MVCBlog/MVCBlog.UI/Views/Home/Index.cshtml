@@ -17,7 +17,7 @@
                 <div>
                     <tr>
                         <td>
-                            CATEGORY: @post.Category.CategoryName
+                            <h3> CATEGORY: @post.Category.CategoryName</h3>
                         </td>
                     </tr>
                 </div>
@@ -39,7 +39,7 @@
 
                     <tr>
                         <td>
-                            TEXT: @post.Body
+                            BODY: @Html.Raw(@post.Body)
                         </td>
 
                     </tr>

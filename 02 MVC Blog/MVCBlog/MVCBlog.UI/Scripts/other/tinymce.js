@@ -3,8 +3,8 @@ tinyMCE.init({
     // General options
     mode: "textareas",
     theme: "modern",
-    //force_p_newlines: false,
-    //forced_root_block: "",
+    force_p_newlines: false,
+    forced_root_block: "",
 
 
     // Theme options
