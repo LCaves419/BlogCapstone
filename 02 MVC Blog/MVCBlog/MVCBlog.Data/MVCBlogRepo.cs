@@ -79,14 +79,17 @@ namespace MVCBlog.Data
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
+                p.Add("@UserID", blogPost.User.UserID);
                 p.Add("@Title", blogPost.Title);
-                p.Add("@Mce", blogPost.Mce.Body);
-                p.Add("@Category", blogPost.Category);
+                p.Add("@Body", blogPost.Mce.Body);
+                p.Add("@CategoryID", blogPost.Category.CategoryID);
+                p.Add("@PostDate", DateTime.Today);
+                p.Add("@Status", blogPost.Status);
 
-                p.Add("BlogPostID",DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@BlogPostID",DbType.Int32, direction: ParameterDirection.Output);
                 cn.Execute("BlogPostInsert", p, commandType: CommandType.StoredProcedure);
 
-                //var blogPostID = p.Get<int>("BlogPostID");
+               var blogPostID = p.Get<int>("BlogPostID");
 
                 foreach (var hashTag in blogPost.HashTags)
                 {
@@ -97,13 +100,14 @@ namespace MVCBlog.Data
 
                     var p3 = new DynamicParameters();
                     p3.Add("@HashTagID", hashTag.HashTagID);
+                    p3.Add("@BlogPostID", blogPostID);
                     cn.Execute("HashTagPostInsert", p3, commandType: CommandType.StoredProcedure);
 
                 }
 
-                    var p4 = new DynamicParameters();
-                    p.Add("@BlogPostID", blogPost.BlogPostID );
-                    cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
+                    //var p4 = new DynamicParameters();
+                    
+                    //cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
                
             }
             

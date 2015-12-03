@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MVCBlog.BLL;
 using MVCBlog.Models;
 using MVCBlog.UI.Models;
@@ -42,7 +44,13 @@ namespace MVCBlog.UI.Controllers
         {
             //blogPostVM.blogPost.PostDate = DateTime.Today;
             // blogPost.Status = 1;
+            _ops = new MVCBlogOps();
+
             var blogPost = new BlogPost();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            blogPost.User.UserID = user.Id;
+
 
             blogPost.Title = blogPostVM.blogPost.Title;
             foreach (var item in blogPostVM.tags)
@@ -51,7 +59,6 @@ namespace MVCBlog.UI.Controllers
                 hashTag.HashName = item;
                 blogPost.HashTags.Add(hashTag);
             }
-
 
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
             blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
