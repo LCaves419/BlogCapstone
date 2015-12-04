@@ -98,9 +98,6 @@ namespace MVCBlog.UI.Controllers
             _res = _ops.GetAllUnapprovedBlogPostsFromRepo();
 
             return View(_res);
-
-
-
         }
 
         public ActionResult ViewPostGet(int id)
