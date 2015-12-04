@@ -21,7 +21,6 @@
                         </td>
                     </tr>
                 </div>
-
                 foreach (var post in Model.BlogPosts)
                  {
                      <div>
@@ -30,14 +29,14 @@
                                  <blockquote class="blockquote-reverse">
                                      <p>TITLE: @post.Title</p>
                                      <p>USER ID: @post.User.UserID</p>
-                                     <p>USER NAME:@post.User.UserName</p>
+                                     <p>USER NAME: @post.User.UserName</p>
                                      <p> BODY: @Html.Raw(@post.Body).</p>
                                      HASHTAG:
                                      @foreach (var name in post.HashTags)
                                      {
-                                         @name.HashTagName
+                                        <span>@name.HashTagName </span>
                                      }
-                                     <small>Fresh Finds Family <cite title="Source Title">Source Title</cite></small>
+                                     <small>Fresh Finds Family <cite title="Source Title"></cite></small>
                                  </blockquote>
                              </td>
                          </tr>

@@ -68,7 +68,10 @@ namespace MVCBlog.Data
         }
 
         // GET POST BY ID METHOD HERE
-
+        public BlogPost GetBlogPostByID(int blogPostID)
+        {
+            return GetAllBlogPosts().Where(id => id.BlogPostID == blogPostID).FirstOrDefault();
+        }
 
 
 
