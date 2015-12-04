@@ -47,6 +47,17 @@ namespace MVCBlog.UI.Controllers
             var blogPost = new BlogPost();
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = userManager.FindById(User.Identity.GetUserId());
+            if (User.IsInRole("Admin"))
+            {
+                blogPostVM.blogPost.Status = 1; // 1 is Approved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+            else
+            {
+                blogPostVM.blogPost.Status = 2; // 2 is Unapproved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+
             blogPost.User.UserID = user.Id;
             blogPost.Title = blogPostVM.blogPost.Title;
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;

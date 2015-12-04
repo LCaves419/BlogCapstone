@@ -17,8 +17,8 @@ namespace MVCBlog.Tests
         [Test]
         public void GetAllBlogPosts_CheckCount()
         {
-            int expected = 0;
-            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var cmd = new SqlCommand();
                 cmd.CommandText = "SELECT COUNT(BlogPostID) FROM BlogPosts";
@@ -31,6 +31,44 @@ namespace MVCBlog.Tests
 
             var repo = new MVCBlogRepo();
             Assert.AreEqual(expected, repo.GetAllBlogPosts().Count());
+        }
+
+        [Test]
+        public void GetAllCategories_CheckCount()
+        {
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = "SELECT COUNT(CategoryID) FROM Categories";
+                cmd.Connection = cn;
+
+                cn.Open();
+
+                expected = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            var repo = new MVCBlogRepo();
+            Assert.AreEqual(expected, repo.GetAllCategories().Count());
+        }
+
+        [Test]
+        public void GetAllHashTags_CheckCount()
+        {
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = "SELECT COUNT(HashTagID) FROM HashTags";
+                cmd.Connection = cn;
+
+                cn.Open();
+
+                expected = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            var repo = new MVCBlogRepo();
+            Assert.AreEqual(expected, repo.GetAllHashTags().Count());
         }
     }
 }

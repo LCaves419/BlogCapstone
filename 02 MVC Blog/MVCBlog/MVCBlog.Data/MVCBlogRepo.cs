@@ -67,6 +67,13 @@ namespace MVCBlog.Data
             return posts;
         }
 
+        // GET POST BY ID METHOD HERE
+
+
+
+
+
+
         public List<Category> GetAllCategories()
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))
@@ -75,10 +82,51 @@ namespace MVCBlog.Data
             }
         }
 
+        public List<HashTag> GetAllHashTags()
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                return cn.Query<HashTag>("GetAllHashTags", commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public void ApproveBlogPostDB(BlogPost blogPost)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@BlogPostID", blogPost.BlogPostID);
+
+                cn.Execute("ApproveBlogPostByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void UnapproveBlogPostDB(BlogPost blogPost)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@BlogPostID", blogPost.BlogPostID);
+
+                cn.Execute("UnapproveBlogPostByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void ArchiveBlogPostDB(BlogPost blogPost)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@BlogPostID", blogPost.BlogPostID);
+
+                cn.Execute("ArchiveBlogPostByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public void CreateBlogPostDB(BlogPost blogPost)
         {
 
-            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
                 p.Add("@UserID", blogPost.User.UserID);
@@ -93,9 +141,7 @@ namespace MVCBlog.Data
 
                 var blogPostID = p.Get<int>("BlogPostID");
 
-                _hashTags = cn.Query<HashTag>("GetAllHashTags", commandType: CommandType.StoredProcedure).ToList();
-
-                //var item = HashTags.Where(p => p.BlogPostID == testPostID).FirstOrDefault();
+                _hashTags = GetAllHashTags();
 
                 foreach (var hashTag in blogPost.HashTags) //new user hashtags
                 {
@@ -109,26 +155,20 @@ namespace MVCBlog.Data
                         p2.Add("@HashTagID", DbType.Int32, direction: ParameterDirection.Output);
                         cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
                         hashTagID = p2.Get<int>("HashTagID");
-                        _hashTags.Add(new HashTag() { HashTagID = hashTagID, HashTagName = hashTag.HashTagName });
+                        _hashTags.Add(new HashTag() {HashTagID = hashTagID, HashTagName = hashTag.HashTagName});
                     }
                     else
                     {
                         hashTagID = ht.HashTagID;
                     }
                     var p4 = new DynamicParameters();
-
-
+                    
                     p4.Add("@HashTagID", hashTagID);
                     p4.Add("@BlogPostID", blogPostID);
                     cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
-
-
-
                 }
 
             }
-
-
         }
     }
 }
