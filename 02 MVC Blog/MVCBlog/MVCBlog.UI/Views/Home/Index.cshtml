@@ -24,37 +24,27 @@
                 <div>
                     <tr>
                         <td>
-                            TITLE: @post.Title
-                            USER ID: @post.User.UserID
-                            USER NAME: @post.User.UserName
-                        </td>
-                        @*<td>
-                            USER ID: @post.User.UserID
-                        </td>
-                        <td>
-                            USER NAME: @post.User.UserName
-                        </td>*@
-                    </tr>
+                            <blockquote class="blockquote-reverse">
+                                <p>TITLE: @post.Title</p>
+                                <p>USER ID: @post.User.UserID</p>
+                                <p>USER NAME:@post.User.UserName</p>
+                                <p> BODY: @Html.Raw(@post.Body).</p>
+                                HASHTAG:
+                                @foreach (var name in post.HashTags)
+                                {
+                                    @name.HashTagName
+                                }
+                                <small>Fresh Finds Family <cite title="Source Title">Source Title</cite></small>
 
-
-                    <tr>
-                        <td>
-                            BODY: @Html.Raw(@post.Body)
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            HASHTAG:
-                            @foreach (var name in post.HashTags)
-                            {
-                                @name.HashTagName
-                            }
+                            </blockquote>
                         </td>
                     </tr>
-
                 </div>
             }
         </table>
     </div>
 </div>
+@section Scripts
+{
+    
+}
