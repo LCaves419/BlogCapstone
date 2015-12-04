@@ -13,12 +13,29 @@ namespace MVCBlog.BLL
         private MVCBlogRepo _repo = new MVCBlogRepo();
         private Response _response;
 
-        public Response GetAllBlogPostFromRepo()
+        public Response GetAllBlogPostsFromRepo()
         {
             _response = new Response();
             var posts = _repo.GetAllBlogPosts();
 
-            if ( posts != null)
+            if (posts != null)
+            {
+                _response.Success = true;
+                _response.BlogPosts = posts;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+        public Response GetAllApprovedBlogPostsFromRepo()
+        {
+            _response = new Response();
+            var posts = _repo.GetAllApprovedBlogPosts();
+
+            if (posts != null)
             {
                 _response.Success = true;
                 _response.BlogPosts = posts;
@@ -59,7 +76,6 @@ namespace MVCBlog.BLL
         public Response GetAllCategoriesFromRepo()
         {
             _response = new Response();
-
             var categories = _repo.GetAllCategories();
 
             if (categories != null)
@@ -72,6 +88,10 @@ namespace MVCBlog.BLL
             _response.Success = false;
             _response.Message = "That is not valid data";
             return _response;
+
+
+
+
         }
 
         public Response GetAllHashTagsFromRepo()

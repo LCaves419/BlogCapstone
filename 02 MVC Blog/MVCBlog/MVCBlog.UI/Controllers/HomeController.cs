@@ -14,15 +14,27 @@ namespace MVCBlog.UI.Controllers
     public class HomeController : Controller
     {
         private Response _res;
-        private MVCBlogOps _ops; 
+        private MVCBlogOps _ops;
 
         public ActionResult Index()
         {
             _res = new Response();
             _ops = new MVCBlogOps();
-            
-            _res = _ops.GetAllBlogPostFromRepo();
-            
+            _res = _ops.GetAllApprovedBlogPostsFromRepo();
+
+
+            //if (User.IsInRole("Admin"))
+            //{
+            //    _res = _ops.GetAllBlogPostsFromRepo();
+            //}
+            //else
+            //{
+            //    _res = _ops.GetAllApprovedBlogPostsFromRepo();
+            //}
+
+
+
+
             return View(_res);
         }
 
@@ -68,7 +80,7 @@ namespace MVCBlog.UI.Controllers
 
             foreach (var item in blogPostVM.tags)
             {
-                HashTag hashTag =  new HashTag();
+                HashTag hashTag = new HashTag();
                 hashTag.HashTagName = item;
                 blogPost.HashTags.Add(hashTag);
             }
@@ -84,7 +96,7 @@ namespace MVCBlog.UI.Controllers
             _ops = new MVCBlogOps();
             _res = new Response();
             _res = _ops.GetAllUnapprovedBlogPostsFromRepo();
-            
+
             return View(_res);
 
 
