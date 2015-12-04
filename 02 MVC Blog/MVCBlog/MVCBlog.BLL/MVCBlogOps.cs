@@ -26,7 +26,7 @@ namespace MVCBlog.BLL
             }
 
             _response.Success = false;
-            _response.Message = "That is not vaild data";
+            _response.Message = "That is not valid data";
             return _response;
         }
 
@@ -51,11 +51,27 @@ namespace MVCBlog.BLL
             }
 
             _response.Success = false;
-            _response.Message = "That is not vaild data";
+            _response.Message = "That is not valid data";
             return _response;
         }
 
+        public Response GetAllHashTagsFromRepo()
+        {
+            _response = new Response();
 
+            var hashTags = _repo.GetAllHashTags();
+
+            if (hashTags != null)
+            {
+                _response.Success = true;
+                _response.HashTags = hashTags;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
 
 
 
