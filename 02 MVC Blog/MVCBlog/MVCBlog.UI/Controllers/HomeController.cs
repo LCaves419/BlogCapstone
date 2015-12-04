@@ -103,6 +103,16 @@ namespace MVCBlog.UI.Controllers
 
         }
 
+        public ActionResult ViewPostGet(int id)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.GetBlogPostByIDFromRepo(id);
+
+            return View(_res);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

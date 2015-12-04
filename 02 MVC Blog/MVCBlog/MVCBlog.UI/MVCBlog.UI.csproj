@@ -442,6 +442,7 @@
     <Content Include="Views\Home\CreatePostGet.cshtml" />
     <Content Include="Views\Home\CreatePostPost.cshtml" />
     <Content Include="Views\Home\ApprovePostsGet.cshtml" />
+    <Content Include="Views\Home\ViewPostGet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

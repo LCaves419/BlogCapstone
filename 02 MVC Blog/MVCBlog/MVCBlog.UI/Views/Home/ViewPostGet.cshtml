@@ -1,0 +1,30 @@
+﻿@model MVCBlog.Models.Response
+@{
+    ViewBag.Title = "ViewPostGet";
+}
+
+<h2>@Model.BlogPost.Title</h2>
+
+<div>
+    <tr>
+        <td>
+            <blockquote class="blockquote-reverse">
+                <h3>CATEGORY: @Model.BlogPost.Category.CategoryName</h3>
+                <p>TITLE: @Model.BlogPost.Title</p>
+                <p>USER ID: @Model.BlogPost.User.UserID</p>
+                <p>USER NAME: @Model.BlogPost.User.UserName</p>
+                <p> BODY: @Html.Raw(@Model.BlogPost.Body).</p>
+                HASHTAG:
+                @foreach (var name in Model.BlogPost.HashTags)
+                {
+                    <span>@name.HashTagName </span>
+                }
+                <small>Fresh Finds Family <cite title="Source Title"></cite></small>
+            </blockquote>
+        </td>
+    </tr>
+</div>
+
+
+
+

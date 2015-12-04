@@ -113,7 +113,23 @@ namespace MVCBlog.BLL
         }
 
 
+        public Response GetBlogPostByIDFromRepo(int id)
+        {
+            _response = new Response();
 
+            var post = _repo.GetBlogPostByID(id);
+
+            if (post != null)
+            {
+                _response.Success = true;
+                _response.BlogPost = post;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
 
 
     }
