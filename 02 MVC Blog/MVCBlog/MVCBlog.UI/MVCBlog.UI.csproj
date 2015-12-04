@@ -441,6 +441,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Home\CreatePostGet.cshtml" />
     <Content Include="Views\Home\CreatePostPost.cshtml" />
+    <Content Include="Views\Home\ApprovePostsGet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

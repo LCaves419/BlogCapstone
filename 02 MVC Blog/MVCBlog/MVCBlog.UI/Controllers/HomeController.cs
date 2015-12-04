@@ -27,6 +27,8 @@ namespace MVCBlog.UI.Controllers
         }
 
         //Displays TinyMCE Editor
+        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles ="Public Relations")]
         public ActionResult CreatePostGet()
         {
             _ops = new MVCBlogOps();
@@ -72,6 +74,20 @@ namespace MVCBlog.UI.Controllers
             _ops.SaveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index");
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ApprovePostsGet()
+        {
+            _ops = new MVCBlogOps();
+            _res = new Response();
+            _res = _ops.GetAllUnapprovedBlogPostsFromRepo();
+            
+            return View(_res);
+
+
+
         }
 
         public ActionResult About()

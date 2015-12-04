@@ -73,6 +73,11 @@ namespace MVCBlog.Data
             return GetAllBlogPosts().Where(id => id.BlogPostID == blogPostID).FirstOrDefault();
         }
 
+        public List<BlogPost> GetAllUnapprovedBlogPosts()
+        {
+            return GetAllBlogPosts().Where(i => i.Status == 2).ToList();
+        } 
+
 
 
 
