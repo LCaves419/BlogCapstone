@@ -12,34 +12,37 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
-            @foreach (var post in Model.BlogPosts)
+            @foreach (var category in Model.BlogPosts)
             {
                 <div>
                     <tr>
                         <td>
-                            <h3> CATEGORY: @post.Category.CategoryName</h3>
+                            <h3> CATEGORY: @category.Category.CategoryName</h3>
                         </td>
                     </tr>
                 </div>
-                <div>
-                    <tr>
-                        <td>
-                            <blockquote class="blockquote-reverse">
-                                <p>TITLE: @post.Title</p>
-                                <p>USER ID: @post.User.UserID</p>
-                                <p>USER NAME:@post.User.UserName</p>
-                                <p> BODY: @Html.Raw(@post.Body).</p>
-                                HASHTAG:
-                                @foreach (var name in post.HashTags)
-                                {
-                                    @name.HashTagName
-                                }
-                                <small>Fresh Finds Family <cite title="Source Title">Source Title</cite></small>
 
-                            </blockquote>
-                        </td>
-                    </tr>
-                </div>
+                foreach (var post in Model.BlogPosts)
+                 {
+                     <div>
+                         <tr>
+                             <td>
+                                 <blockquote class="blockquote-reverse">
+                                     <p>TITLE: @post.Title</p>
+                                     <p>USER ID: @post.User.UserID</p>
+                                     <p>USER NAME:@post.User.UserName</p>
+                                     <p> BODY: @Html.Raw(@post.Body).</p>
+                                     HASHTAG:
+                                     @foreach (var name in post.HashTags)
+                                     {
+                                         @name.HashTagName
+                                     }
+                                     <small>Fresh Finds Family <cite title="Source Title">Source Title</cite></small>
+                                 </blockquote>
+                             </td>
+                         </tr>
+                     </div>
+                 }
             }
         </table>
     </div>
