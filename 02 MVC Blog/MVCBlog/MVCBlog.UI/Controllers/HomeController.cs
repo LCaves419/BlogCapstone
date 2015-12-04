@@ -51,6 +51,7 @@ namespace MVCBlog.UI.Controllers
             var user = userManager.FindById(User.Identity.GetUserId());
             if (User.IsInRole("Admin"))
             {
+                // TODO: simplify this, inspect blogPost.Status
                 blogPostVM.blogPost.Status = 1; // 1 is Approved
                 blogPost.Status = blogPostVM.blogPost.Status;
             }
