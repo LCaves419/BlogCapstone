@@ -76,12 +76,22 @@ namespace MVCBlog.UI.Controllers
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
             blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
 
-            foreach (var item in blogPostVM.tags)
+            if (blogPostVM.tags == null)
             {
                 HashTag hashTag = new HashTag();
-                hashTag.HashTagName = item;
+                hashTag.HashTagName = "#freshfoods";
                 blogPost.HashTags.Add(hashTag);
             }
+            else
+            {
+                foreach (var item in blogPostVM.tags)
+                {
+                    HashTag hashTag = new HashTag();
+                    hashTag.HashTagName = item;
+                    blogPost.HashTags.Add(hashTag);
+                }
+            }
+            
             _ops.SaveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index");
