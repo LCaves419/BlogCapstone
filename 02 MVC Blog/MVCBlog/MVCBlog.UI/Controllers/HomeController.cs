@@ -20,8 +20,9 @@ namespace MVCBlog.UI.Controllers
         {
             _res = new Response();
             _ops = new MVCBlogOps();
-            _res = _ops.GetAllApprovedBlogPostsFromRepo();
 
+            _res = _ops.GetAllBlogPostsFromRepo();
+            var posts = _res.BlogPosts;
 
             //if (User.IsInRole("Admin"))
             //{
@@ -35,7 +36,7 @@ namespace MVCBlog.UI.Controllers
 
 
 
-            return View(_res);
+            return View(posts);
         }
 
         //Displays TinyMCE Editor

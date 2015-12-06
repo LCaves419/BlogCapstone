@@ -75,8 +75,10 @@ namespace MVCBlog.Data
 
         public List<BlogPost> GetAllApprovedBlogPosts()
         {
-            return GetAllBlogPosts().Where(i => i.Status == 1).ToList();
-        } 
+                var posts = GetAllBlogPosts().Where(i => i.Status == 1).ToList();
+            return posts;
+
+        }
 
         public List<BlogPost> GetAllUnapprovedBlogPosts()
         {

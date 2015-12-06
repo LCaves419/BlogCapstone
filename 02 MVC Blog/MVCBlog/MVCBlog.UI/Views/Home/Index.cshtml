@@ -1,4 +1,5 @@
-﻿@model MVCBlog.Models.Response
+﻿@using System.Drawing.Design
+@model List<MVCBlog.Models.BlogPost>
 
 @{
     ViewBag.Title = "Home Page";
@@ -9,46 +10,246 @@
 
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="carousel slide" id="carousel-817120">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-817120">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-817120">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-817120">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="Carousel Bootstrap First" src="http://lorempixel.com/image_output/food-q-c-640-480-6.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                First Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="Carousel Bootstrap Second" src="http://lorempixel.com/image_output/food-q-c-640-480-6.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Second Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="Carousel Bootstrap Third" src="http://lorempixel.com/image_output/food-q-c-640-480-6.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Third Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-817120" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-817120" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
-            @*@foreach (var category in Model.BlogPosts)
+            @foreach (var posts in Model) //Where(x => category.Category.CategoryID == x.Category.CategoryID))
             {
-                <div>
-                    <tr>
-                        <td>
-                            <h3> CATEGORY: @category.Category.CategoryName</h3>
-                        </td>
-                    </tr>
-                </div>
 
-            }*@
-            @foreach (var post in Model.BlogPosts)
-            {
-            <div>
-                <tr>
-                    <td>
-                        <h3>CATEGORY: @post.Category.CategoryName</h3>
-                        <blockquote class="blockquote-reverse">
-                            <p>TITLE: @post.Title</p>
-                            <p>USER ID: @post.User.UserID</p>
-                            <p>USER NAME: @post.User.UserName</p>
-                            <p> BODY: @Html.Raw(@post.Body).</p>
-                            HASHTAG:
-                            @foreach (var name in post.HashTags)
-                            {
-                                <span>@name.HashTagName </span>
-                            }
-                            <small>Fresh Finds Family <cite title="Source Title"></cite></small>
-                        </blockquote>
-                    </td>
-                </tr>
-            </div>
+                <h3>@posts.Category.CategoryName</h3>
+                <blockquote class="blockquote-reverse">
+                    <p>@posts.Title</p>
+                    @*<p>USER ID: @posts.User.UserID</p>
+                        <p>USER NAME: @posts.User.UserName</p>*@
+                    <p>@Html.Raw(@posts.Body).</p>
+
+                    @foreach (var name in posts.HashTags)
+                    {
+                        <span>@name.HashTagName </span>
+                    }
+                    <small>Fresh Finds Family <cite title="Source Title"></cite></small>
+                </blockquote>
+
             }
         </table>
     </div>
 </div>
+
+
+
 @section Scripts
 {
-    
+
 }
+
+
+@*@foreach (var category in Model.BlogPosts)
+    {
+        <div>
+            <tr>
+                <td>
+                    <h3> CATEGORY: @category.Category.CategoryName</h3>
+                </td>
+            </tr>
+        </div>
+    }*@
+
+
+@*<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" id="carousel-817120">
+                    <ol class="carousel-indicators">
+                        <li class="active" data-slide-to="0" data-target="#carousel-817120">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-817120">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-817120">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img alt="Carousel Bootstrap First" src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    First Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Second" src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    Second Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Third" src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    Third Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                    </div> <a class="left carousel-control" href="#carousel-817120" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-817120" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+
+                <div class="jumbotron">
+                    <h2>
+                        Hello, world!<span>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</span>
+                    </h2><a href="http://www.layoutit.com/build#carousel-523703"></a>
+
+                    <p>
+                        <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>
+                            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                Lorem ipsum dolor sit amet
+                            </li>
+                            <li>
+                                Consectetur adipiscing elit
+                            </li>
+                            <li>
+                                Integer molestie lorem at massa
+                            </li>
+                            <li>
+                                Facilisis in pretium nisl aliquet
+                            </li>
+                            <li>
+                                Nulla volutpat aliquam velit
+                            </li>
+                            <li>
+                                Faucibus porta lacus fringilla vel
+                            </li>
+                            <li>
+                                Aenean sit amet erat nunc
+                            </li>
+                            <li>
+                                Eget porttitor lorem
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center text-primary">
+                    h3. Lorem ipsum dolor sit amet.
+                </h3>
+                <p class="text-left text-primary">
+                    Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>
+                    Heading
+                </h2>
+                <p>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                </p>
+                <p>
+                    <a class="btn" href="#">View details »</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>
+                    Heading
+                </h2>
+                <p>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                </p>
+                <p>
+                    <a class="btn" href="#">View details »</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>
+                    Heading
+                </h2>
+                <p>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                </p>
+                <p>
+                    <a class="btn" href="#">View details »</a>
+                </p>
+            </div>
+        </div>
+    </div>*@
