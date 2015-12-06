@@ -33,9 +33,6 @@ namespace MVCBlog.UI.Controllers
             //    _res = _ops.GetAllApprovedBlogPostsFromRepo();
             //}
 
-
-
-
             return View(posts);
         }
 
@@ -110,6 +107,28 @@ namespace MVCBlog.UI.Controllers
 
             return View(_res);
         }
+
+
+
+        public ActionResult ApprovePost(int id)
+        {
+            _ops.ApproveBlogPostToRepo(id);
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult UnapprovePost(int id)
+        {
+            _ops.UnapproveBlogPostToRepo(id);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public ActionResult ArchivePost(int id)
+        {
+            _ops.ArchiveBlogPostToRepo(id);
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public ActionResult About()
         {
