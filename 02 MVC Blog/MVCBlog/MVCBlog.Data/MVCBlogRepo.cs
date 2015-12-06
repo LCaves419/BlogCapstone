@@ -67,6 +67,12 @@ namespace MVCBlog.Data
             return posts;
         }
 
+        //public List<BlogPost> GetAllBlogPostsByCategory()
+        //{
+        //    var orderedList = GetAllBlogPosts().OrderBy(b => b.Category.CategoryID);
+        //    return orderedList;
+        //} 
+
         public BlogPost GetBlogPostByID(int blogPostID)
         {
             return GetAllBlogPosts().Where(id => id.BlogPostID == blogPostID).FirstOrDefault();

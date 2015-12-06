@@ -108,7 +108,7 @@ namespace MVCBlog.UI.Controllers
             return View(_res);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult ViewPostGet(int id)
         {
             _res = new Response();

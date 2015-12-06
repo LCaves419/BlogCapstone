@@ -26,8 +26,11 @@
             </td>
         </tr>
     </div>
+@if (User.IsInRole("Admin"))
+{
 
     <div class="col-xs-3">
+
         @using (Html.BeginForm("ApprovePost", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
@@ -41,4 +44,7 @@
             <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
         }
     </div>
+
+}
+
 </div>

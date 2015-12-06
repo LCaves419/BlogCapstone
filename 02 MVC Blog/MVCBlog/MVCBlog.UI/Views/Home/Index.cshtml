@@ -64,17 +64,18 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
-            @foreach (var posts in Model) //Where(x => category.Category.CategoryID == x.Category.CategoryID))
+            @foreach (var post in Model)
             {
 
-                <h3>@posts.Category.CategoryName</h3>
+                <h3><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
                 <blockquote class="blockquote-reverse">
-                    <p>@posts.Title</p>
+                 
+                    <p>@post.Category.CategoryName</p>
                     @*<p>USER ID: @posts.User.UserID</p>
                         <p>USER NAME: @posts.User.UserName</p>*@
-                    <p>@Html.Raw(@posts.Body).</p>
+                    <p>@Html.Raw(@post.Body).</p>
 
-                    @foreach (var name in posts.HashTags)
+                    @foreach (var name in post.HashTags)
                     {
                         <span>@name.HashTagName </span>
                     }
