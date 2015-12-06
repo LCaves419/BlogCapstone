@@ -108,11 +108,34 @@ namespace MVCBlog.BLL
             _response.Success = false;
             _response.Message = "That is not valid data";
             return _response;
-
-
-
-
         }
+
+        public Response ApproveBlogPostToRepo(int id)
+        {
+            _response = new Response();
+            _repo.ApproveBlogPostDB(id);
+
+            _response.Success = true;
+            return _response;
+        }
+
+        public Response UnapproveBlogPostToRepo(int id)
+        {
+            _response = new Response();
+            _repo.UnapproveBlogPostDB(id);
+            _response.Success = true;
+            return _response;
+        }
+
+        public Response ArchiveBlogPostToRepo(int id)
+        {
+            _response = new Response();
+            _repo.ArchiveBlogPostDB(id);
+            _response.Success = true;
+            return _response;
+        }
+
+
 
         public Response GetAllHashTagsFromRepo()
         {

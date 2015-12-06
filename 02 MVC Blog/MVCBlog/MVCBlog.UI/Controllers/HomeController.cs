@@ -33,9 +33,6 @@ namespace MVCBlog.UI.Controllers
             //    _res = _ops.GetAllApprovedBlogPostsFromRepo();
             //}
 
-
-
-
             return View(posts);
         }
 
@@ -79,12 +76,22 @@ namespace MVCBlog.UI.Controllers
             blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
             blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
 
-            foreach (var item in blogPostVM.tags)
+            if (blogPostVM.tags == null)
             {
                 HashTag hashTag = new HashTag();
-                hashTag.HashTagName = item;
+                hashTag.HashTagName = "#freshfoods";
                 blogPost.HashTags.Add(hashTag);
             }
+            else
+            {
+                foreach (var item in blogPostVM.tags)
+                {
+                    HashTag hashTag = new HashTag();
+                    hashTag.HashTagName = item;
+                    blogPost.HashTags.Add(hashTag);
+                }
+            }
+            
             _ops.SaveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index");
@@ -110,6 +117,28 @@ namespace MVCBlog.UI.Controllers
 
             return View(_res);
         }
+
+
+
+        public ActionResult ApprovePost(int id)
+        {
+            _ops.ApproveBlogPostToRepo(id);
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult UnapprovePost(int id)
+        {
+            _ops.UnapproveBlogPostToRepo(id);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public ActionResult ArchivePost(int id)
+        {
+            _ops.ArchiveBlogPostToRepo(id);
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public ActionResult About()
         {
