@@ -30,6 +30,25 @@ namespace MVCBlog.BLL
             return _response;
         }
 
+        public Response GetAllBlogPostsByCategoryFromRepo(int id)
+        {
+            _response = new Response();
+            var posts = _repo.GetAllBlogPostsByCategory(id);
+
+            if (posts != null)
+            {
+                _response.Success = true;
+                _response.BlogPosts = posts;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+
+
         public Response GetAllApprovedBlogPostsFromRepo()
         {
             _response = new Response();

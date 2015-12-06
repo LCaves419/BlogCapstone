@@ -1,0 +1,32 @@
+﻿@model List<MVCBlog.Models.BlogPost>
+
+@{
+    ViewBag.Title = "Posts By Category";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            @foreach (var post in Model)
+            {
+                <h3>@post.Title</h3>
+                <blockquote class="blockquote-reverse">
+                    <p>@post.PostDate.Date.ToString("MM/dd/yyyy")</p>
+                    <p>@post.Category.CategoryName</p>
+                    @*<p>USER ID: @posts.User.UserID</p>
+                        <p>USER NAME: @posts.User.UserName</p>*@
+                    <p>@Html.Raw(@post.Body).</p>
+
+                    @foreach (var name in post.HashTags)
+                    {
+                        <span>@name.HashTagName </span>
+                    }
+                    <small>Fresh Finds Family <cite title="Source Title"></cite></small>
+                </blockquote>
+
+            }
+        </table>
+    </div>
+</div>

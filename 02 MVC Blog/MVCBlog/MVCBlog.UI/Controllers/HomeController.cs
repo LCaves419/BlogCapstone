@@ -21,7 +21,7 @@ namespace MVCBlog.UI.Controllers
             _res = new Response();
             _ops = new MVCBlogOps();
 
-            _res = _ops.GetAllBlogPostsFromRepo();
+            _res = _ops.GetAllApprovedBlogPostsFromRepo();
             var posts = _res.BlogPosts;
 
             //if (User.IsInRole("Admin"))
@@ -150,6 +150,15 @@ namespace MVCBlog.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult ViewPostsByCategory(int id)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+           _res =  _ops.GetAllBlogPostsByCategoryFromRepo(id);
+           // _res.BlogPosts
+            return View(_res.BlogPosts);
+        }
 
         public ActionResult About()
         {

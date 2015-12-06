@@ -9,14 +9,16 @@
     <div class="col-md-12">
         <tr>
             <td>
+                <h3>@Model.BlogPost.Title</h3>
+                
                 <blockquote class="blockquote-reverse">
-                    <h3>CATEGORY: @Model.BlogPost.Category.CategoryName</h3>
-                    <p>ID: @Model.BlogPost.BlogPostID</p>
-                    <p>TITLE: @Model.BlogPost.Title</p>
-                    <p>USER ID: @Model.BlogPost.User.UserID</p>
-                    <p>USER NAME: @Model.BlogPost.User.UserName</p>
-                    <p> BODY: @Html.Raw(@Model.BlogPost.Body).</p>
-                    HASHTAG:
+                    <p>@Model.BlogPost.PostDate.Date.ToString("MM/dd/yyyy")</p>
+                    @*<p>ID: @Model.BlogPost.BlogPostID</p>*@
+                    <p>@Model.BlogPost.Category.CategoryName</p>
+                    @*<p>USER ID: @Model.BlogPost.User.UserID</p>
+                    <p>USER NAME: @Model.BlogPost.User.UserName</p>*@
+                    <p>@Html.Raw(@Model.BlogPost.Body).</p>
+
                     @foreach (var name in Model.BlogPost.HashTags)
                     {
                         <span>@name.HashTagName </span>
@@ -26,7 +28,7 @@
             </td>
         </tr>
     </div>
-@if (User.IsInRole("Admin"))
+@if (User.IsInRole("Admin") && Model.BlogPost.Status == 2)
 {
 
     <div class="col-xs-3">

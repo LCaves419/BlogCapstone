@@ -26,12 +26,17 @@
                 <tr>
                     <td>
                         <blockquote class="blockquote-reverse">
-                            <h3>CATEGORY: @post.Category.CategoryName</h3>
-                            <a href="/Home/ViewPostGet/@post.BlogPostID"><p>TITLE: @post.Title</p></a>
-                            <p>USER ID: @post.User.UserID</p>
-                            <p>USER NAME: @post.User.UserName</p>
-                            <p> BODY: @Html.Raw(@post.Body).</p>
-                            HASHTAG:
+                            <a href="/Home/ViewPostGet/@post.BlogPostID">
+                                <h3>@post.Title</h3></a>
+                            <p>@post.PostDate.Date.ToString("MM/dd/yyyy")</p>
+
+
+                            <p>@post.Category.CategoryName</p>
+
+                            @*<p>USER ID: @post.User.UserID</p>
+                            <p>USER NAME: @post.User.UserName</p>*@
+                            <p>@Html.Raw(@post.Body).</p>
+                            
                             @foreach (var name in post.HashTags)
                             {
                                 <span>@name.HashTagName </span>

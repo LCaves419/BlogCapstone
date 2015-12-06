@@ -103,6 +103,15 @@ namespace MVCBlog.Data
             }
         }
 
+        public List<BlogPost> GetAllBlogPostsByCategory(int id)
+        {
+            var posts = GetAllBlogPosts().Where(i => i.Category.CategoryID == id).ToList();
+
+
+            return posts;
+
+        }
+
         public List<HashTag> GetAllHashTags()
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))

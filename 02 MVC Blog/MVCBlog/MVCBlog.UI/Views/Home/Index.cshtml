@@ -64,13 +64,14 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
+
+
             @foreach (var post in Model)
             {
-
                 <h3><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
                 <blockquote class="blockquote-reverse">
-                 
-                    <p>@post.Category.CategoryName</p>
+                    <p>@post.PostDate.Date.ToString("MM/dd/yyyy")</p>
+                    <p><a href="/Home/ViewPostsByCategory/@post.Category.CategoryID">@post.Category.CategoryName</a></p>
                     @*<p>USER ID: @posts.User.UserID</p>
                         <p>USER NAME: @posts.User.UserName</p>*@
                     <p>@Html.Raw(@post.Body).</p>
