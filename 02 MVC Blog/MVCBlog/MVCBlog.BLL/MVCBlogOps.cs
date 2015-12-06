@@ -110,27 +110,27 @@ namespace MVCBlog.BLL
             return _response;
         }
 
-        public Response ApproveBlogPostToRepo(int id)
+        public Response ApproveBlogPostToRepo(BlogPost blogPost)
         {
             _response = new Response();
-            _repo.ApproveBlogPostDB(id);
+            _repo.ApproveBlogPostDB(blogPost);
 
             _response.Success = true;
             return _response;
         }
 
-        public Response UnapproveBlogPostToRepo(int id)
+        public Response UnapproveBlogPostToRepo(BlogPost blogPost)
         {
             _response = new Response();
-            _repo.UnapproveBlogPostDB(id);
+            _repo.UnapproveBlogPostDB(blogPost);
             _response.Success = true;
             return _response;
         }
 
-        public Response ArchiveBlogPostToRepo(int id)
+        public Response ArchiveBlogPostToRepo(BlogPost blogPost)
         {
             _response = new Response();
-            _repo.ArchiveBlogPostDB(id);
+            _repo.ArchiveBlogPostDB(blogPost);
             _response.Success = true;
             return _response;
         }

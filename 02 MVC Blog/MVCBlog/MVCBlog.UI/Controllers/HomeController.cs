@@ -108,6 +108,7 @@ namespace MVCBlog.UI.Controllers
             return View(_res);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult ViewPostGet(int id)
         {
             _res = new Response();
@@ -119,23 +120,33 @@ namespace MVCBlog.UI.Controllers
         }
 
 
-
-        public ActionResult ApprovePost(int id)
+        [HttpPost]
+        public ActionResult ApprovePost(BlogPost blogPost)
         {
-            _ops.ApproveBlogPostToRepo(id);
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.ApproveBlogPostToRepo(blogPost);
             return RedirectToAction("Index","Home");
         }
 
-        public ActionResult UnapprovePost(int id)
+        [HttpPost]
+        public ActionResult UnapprovePost(BlogPost blogPost)
         {
-            _ops.UnapproveBlogPostToRepo(id);
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.UnapproveBlogPostToRepo(blogPost);
             return RedirectToAction("Index", "Home");
         }
 
-
-        public ActionResult ArchivePost(int id)
+        [HttpPost]
+        public ActionResult ArchivePost(BlogPost blogPost)
         {
-            _ops.ArchiveBlogPostToRepo(id);
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.ArchiveBlogPostToRepo(blogPost);
             return RedirectToAction("Index", "Home");
         }
 

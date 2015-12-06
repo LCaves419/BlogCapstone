@@ -28,17 +28,17 @@
     </div>
 
     <div class="col-xs-3">
-        @using (Html.BeginForm("ApprovePost", "Home", null, FormMethod.Post))
+        @using (Html.BeginForm("ApprovePost", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
-            <button type="submit" class="btn btn-primary">Approve</button>
+            <button id="ApprovePost" type="submit" class="btn btn-primary">Approve</button>
         }
     </div>
     <div class="col-xs-9">
-        @using (Html.BeginForm("ArchivePost", "Home", null, FormMethod.Post))
+        @using (Html.BeginForm("ArchivePost", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
-            <button type="submit" class="btn btn-warning">Archive</button>
+            <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
         }
     </div>
 </div>

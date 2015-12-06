@@ -105,34 +105,34 @@ namespace MVCBlog.Data
             }
         }
 
-        public void ApproveBlogPostDB(int id)
+        public void ApproveBlogPostDB(BlogPost blogPost)
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
-                p.Add("@BlogPostID", id);
+                p.Add("@BlogPostID", blogPost.BlogPostID);
 
                 cn.Execute("ApproveBlogPostByID", p, commandType: CommandType.StoredProcedure);
             }
         }
 
-        public void UnapproveBlogPostDB(int id)
+        public void UnapproveBlogPostDB(BlogPost blogPost)
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
-                p.Add("@BlogPostID", id);
+                p.Add("@BlogPostID", blogPost.BlogPostID);
 
                 cn.Execute("UnapproveBlogPostByID", p, commandType: CommandType.StoredProcedure);
             }
         }
 
-        public void ArchiveBlogPostDB(int id)
+        public void ArchiveBlogPostDB(BlogPost blogPost)
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
-                p.Add("@BlogPostID", id);
+                p.Add("@BlogPostID", blogPost.BlogPostID);
 
                 cn.Execute("ArchiveBlogPostByID", p, commandType: CommandType.StoredProcedure);
             }
