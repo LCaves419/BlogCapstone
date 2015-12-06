@@ -67,7 +67,6 @@ namespace MVCBlog.Data
             return posts;
         }
 
-        // GET POST BY ID METHOD HERE
         public BlogPost GetBlogPostByID(int blogPostID)
         {
             return GetAllBlogPosts().Where(id => id.BlogPostID == blogPostID).FirstOrDefault();
@@ -81,7 +80,12 @@ namespace MVCBlog.Data
         public List<BlogPost> GetAllUnapprovedBlogPosts()
         {
             return GetAllBlogPosts().Where(i => i.Status == 2).ToList();
-        } 
+        }
+
+        public List<BlogPost> GetAllArchivedBlogPosts()
+        {
+            return GetAllBlogPosts().Where(i => i.Status == 3).ToList();
+        }  
 
         public List<Category> GetAllCategories()
         {
