@@ -74,7 +74,7 @@ namespace MVCBlog.Data
 
         public List<BlogPost> GetAllApprovedBlogPosts()
         {
-                var posts = GetAllBlogPosts().Where(i => i.Status == 1).ToList();
+            var posts = GetAllBlogPosts().Where(i => i.Status == 1).ToList();
             return posts;
 
         }
@@ -87,7 +87,7 @@ namespace MVCBlog.Data
         public List<BlogPost> GetAllArchivedBlogPosts()
         {
             return GetAllBlogPosts().Where(i => i.Status == 3).ToList();
-        }  
+        }
 
         public List<Category> GetAllCategories()
         {
@@ -170,14 +170,14 @@ namespace MVCBlog.Data
                         p2.Add("@HashTagID", DbType.Int32, direction: ParameterDirection.Output);
                         cn.Execute("HashTagInsert", p2, commandType: CommandType.StoredProcedure);
                         hashTagID = p2.Get<int>("HashTagID");
-                        _hashTags.Add(new HashTag() {HashTagID = hashTagID, HashTagName = hashTag.HashTagName});
+                        _hashTags.Add(new HashTag() { HashTagID = hashTagID, HashTagName = hashTag.HashTagName });
                     }
                     else
                     {
                         hashTagID = ht.HashTagID;
                     }
                     var p4 = new DynamicParameters();
-                    
+
                     p4.Add("@HashTagID", hashTagID);
                     p4.Add("@BlogPostID", blogPostID);
                     cn.Execute("HashTagPostInsert", p4, commandType: CommandType.StoredProcedure);
