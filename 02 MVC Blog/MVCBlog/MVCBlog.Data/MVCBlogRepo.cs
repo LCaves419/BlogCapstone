@@ -173,7 +173,6 @@ namespace MVCBlog.Data
 
         public void CreateBlogPostDB(BlogPost blogPost)
         {
-
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {
                 var p = new DynamicParameters();
@@ -217,6 +216,111 @@ namespace MVCBlog.Data
                 }
 
             }
+        }
+        //-------------------------------------------------------------------------------------------------------
+
+        public List<StaticPage> GetAllStaticPages()
+        {
+            List<StaticPage> pages = new List<StaticPage>();
+
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "GetAllStaticPages";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                            StaticPage page = new StaticPage();
+                            page.StaticPageID= dr.GetInt32(0);
+                            page.Date = dr.GetDateTime(1);
+                            page.Title = dr.GetString(2);
+                            page.Mce.Body = dr.GetString(3);
+                            page.Status = dr.GetInt32(4);
+                            page.UserID = dr.GetString(5);
+                            
+                            pages.Add(page);
+                    }
+                }
+            }
+            return pages;
+        }
+
+        public void CreateStaticPage(StaticPage staticPage)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@UserID", staticPage.UserID);
+                p.Add("@Title", staticPage.Title);
+                p.Add("@Body", staticPage.Mce.Body);
+                p.Add("@Date", DateTime.Today);
+                p.Add("@Status", staticPage.Status);
+
+                p.Add("@StaticPageID", DbType.Int32, direction: ParameterDirection.Output);
+                cn.Execute("StaticPageInsert", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public StaticPage GetStaticPageByID(int id)
+        {
+            return GetAllStaticPages().Where(i => i.StaticPageID == id).FirstOrDefault();
+        }
+
+        public void ApproveStaticPageDB(StaticPage staticPage)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StaticPageID", staticPage.StaticPageID);
+
+                cn.Execute("ApproveStaticPageByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+        public void UnapproveStaticPageDB(StaticPage staticPage)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StaticPageID", staticPage.StaticPageID);
+
+                cn.Execute("UnapproveStaticPageByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void ArchiveStaticPageDB(StaticPage staticPage)
+        {
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StaticPageID", staticPage.StaticPageID);
+
+                cn.Execute("ArchiveStaticPageByID", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public List<StaticPage> GetAllApprovedStaticPages()
+        {
+            var pages = GetAllStaticPages().Where(i => i.Status == 1).ToList();
+            return pages;
+        }
+
+        public List<StaticPage> GetAllUnapprovedStaticPages()
+        {
+            var pages = GetAllStaticPages().Where(i => i.Status == 2).ToList();
+            return pages;
+        }
+
+        public List<StaticPage> GetAllArchivedStaticPages()
+        {
+            var pages = GetAllStaticPages().Where(i => i.Status == 3).ToList();
+            return pages;
         }
     }
 }

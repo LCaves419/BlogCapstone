@@ -8,11 +8,15 @@ namespace MVCBlog.Models
 {
     public class StaticPage
     {
-        public string StaticPageID { get; set; }
+        public StaticPage()
+        {
+            Mce = new TinyMceClass();
+        }
+        public int StaticPageID { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public TinyMceClass Mce { get; set; }
         public int Status { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
     }
 }
