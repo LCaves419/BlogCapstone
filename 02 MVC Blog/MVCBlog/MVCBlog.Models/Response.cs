@@ -31,6 +31,9 @@ namespace MVCBlog.Models
         public User User { get; set; }
         public UserLevel UserLevel { get; set; }
         public TinyMceClass Mce { get; set; }
+        public StaticPage StaticPage { get; set; }
+        public List<StaticPage> StaticPages { get; set; }
+
 
     }
 }

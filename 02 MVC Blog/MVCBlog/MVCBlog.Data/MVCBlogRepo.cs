@@ -250,7 +250,7 @@ namespace MVCBlog.Data
             return pages;
         }
 
-        public void CreateStaticPage(StaticPage staticPage)
+        public void CreateStaticPageDB(StaticPage staticPage)
         {
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {

@@ -207,7 +207,132 @@ namespace MVCBlog.BLL
             _response.Message = "That is not valid data";
             return _response;
         }
+ //---------------------------STATIC PAGES-----------------------------------------------------
+
+        public Response GetAllStaticPagesFromRepo()
+        {
+            _response = new Response();
+            var pages = _repo.GetAllStaticPages();
+
+            if (pages != null)
+            {
+                _response.Success = true;
+                _response.StaticPages = pages;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+        public Response GetAllApprovedStaticPagesFromRepo()
+        {
+            _response = new Response();
+            var pages = _repo.GetAllApprovedStaticPages();
+
+            if (pages != null)
+            {
+                _response.Success = true;
+                _response.StaticPages = pages;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+        public Response GetAllUnapprovedStaticPagesFromRepo()
+        {
+            _response = new Response();
+            var pages = _repo.GetAllUnapprovedStaticPages();
+
+            if (pages != null)
+            {
+                _response.Success = true;
+                _response.StaticPages = pages;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+        public Response GetAllArchivedStaticPagesFromRepo()
+        {
+            _response = new Response();
+            var pages = _repo.GetAllArchivedStaticPages();
+
+            if (pages != null)
+            {
+                _response.Success = true;
+                _response.StaticPages = pages;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
+
+        public Response ApproveStaticPageToRepo(StaticPage staticPage)
+        {
+            _response = new Response();
+            _repo.ApproveStaticPageDB(staticPage);
+
+            _response.Success = true;
+            return _response;
+        }
 
 
+        public Response UnapproveStaticPageToRepo(StaticPage staticPage)
+        {
+            _response = new Response();
+            _repo.UnapproveStaticPageDB(staticPage);
+
+            _response.Success = true;
+            return _response;
+        }
+
+
+        public Response ArchiveStaticPageToRepo(StaticPage staticPage)
+        {
+            _response = new Response();
+            _repo.ArchiveStaticPageDB(staticPage);
+
+            _response.Success = true;
+            return _response;
+        }
+
+
+        public Response SaveStaticPageToRepo(StaticPage staticPage)
+        {
+            _response = new Response();
+
+            _repo.CreateStaticPageDB(staticPage);
+
+            _response.Success = true;
+            return _response;
+        }
+
+        public Response GetStaticPageByIDFromRepo(int id)
+        {
+            _response = new Response();
+
+            var page = _repo.GetStaticPageByID(id);
+
+            if (page != null)
+            {
+                _response.Success = true;
+                _response.StaticPage = page;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
     }
 }
