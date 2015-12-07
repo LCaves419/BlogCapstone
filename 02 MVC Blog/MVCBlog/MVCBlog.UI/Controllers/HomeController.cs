@@ -24,22 +24,10 @@ namespace MVCBlog.UI.Controllers
 
             _res = _ops.GetAllApprovedBlogPostsFromRepo();
             var posts = _res.BlogPosts;
-
-            //if (User.IsInRole("Admin"))
-            //{
-            //    _res = _ops.GetAllBlogPostsFromRepo();
-            //}
-            //else
-            //{
-            //    _res = _ops.GetAllApprovedBlogPostsFromRepo();
-            //}
-
             return View(posts);
         }
 
-        //Displays TinyMCE Editor
-        //[Authorize(Roles = "Admin")]
-        //[Authorize(Roles ="Public Relations")]
+      
         public ActionResult CreatePostGet()
         {
             _ops = new MVCBlogOps();
@@ -48,8 +36,6 @@ namespace MVCBlog.UI.Controllers
 
             _res = _ops.GetAllCategoriesFromRepo();
             blogPostVM.CreateCategoriesList(_res.Categories);
-
-           
 
             return View(blogPostVM);
         }
@@ -63,35 +49,14 @@ namespace MVCBlog.UI.Controllers
             _res = _ops.GetBlogPostByIDFromRepo(id);
             blogPostVM.blogPost = _res.BlogPost;
 
-            //blogPostVM.blogPost.BlogPostID = _res.BlogPost.BlogPostID;
-            //blogPostVM.blogPost.Title = _res.BlogPost.Title;
-            //blogPostVM.blogPost.PostDate = _res.BlogPost.PostDate;
-
             blogPostVM.blogPost.HashTags = _res.BlogPost.HashTags;
             blogPostVM.blogPost.Mce.Body = _res.BlogPost.Body;
             blogPostVM.blogPost.Category = _res.BlogPost.Category;
-            //blogPostVM.blogPost.Status = _res.BlogPost.Status;
-            //blogPostVM.blogPost.User.UserID = _res.BlogPost.User.UserID;
-            //blogPostVM.blogPost.User.UserName = _res.BlogPost.User.UserName;
-
-
-
             blogPostVM.CreateCategoriesList(_ops.GetAllCategoriesFromRepo().Categories);
-
-
-            ////TODO: move me to edit
-            //blogPostVM.blogPost = new BlogPost()
-            //{
-            //    BlogPostID = blogPostVM.blogPost.BlogPostID,
-
-            //    Mce = new TinyMceClass()
-            //    {
-            //        Body = "will this populate..."
-            //    }
-            //};
 
             return View(blogPostVM);
         }
+
         [HttpPost]
         public ActionResult EditPostPost(BlogPostVM blogPostVM)
         {
