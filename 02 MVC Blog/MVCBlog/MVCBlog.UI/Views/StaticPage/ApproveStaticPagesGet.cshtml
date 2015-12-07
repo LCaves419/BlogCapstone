@@ -1,0 +1,33 @@
+﻿@model MVCBlog.Models.Response
+
+@{
+    ViewBag.Title = "ApproveStaticPagesGet";
+}
+
+<h2>ApproveStaticPagesGet</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            @foreach (var page in Model.StaticPages)
+            {
+                <div>
+                    <tr>
+                        <td>
+                            <blockquote class="blockquote-reverse">
+                                <a href="/StaticPage/ViewStaticPageGet/@page.StaticPageID">
+                                    <h3>@page.Title</h3>
+                                </a>
+                                <p>@page.Date.ToString("MM/dd/yyyy")</p>
+
+                                <p>@Html.Raw(@page.Mce.Body).</p>
+
+                                <small>Fresh Finds Family <cite title="Source Title"></cite></small>
+                            </blockquote>
+                        </td>
+                    </tr>
+                </div>
+            }
+        </table>
+    </div>
+</div>

@@ -63,6 +63,16 @@ namespace MVCBlog.UI.Controllers
             return RedirectToAction("Index", "StaticPage");
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult ApproveStaticPagesGet()
+        {
+            _ops = new MVCBlogOps();
+            _res = new Response();
+            _res = _ops.GetAllUnapprovedStaticPagesFromRepo();
+
+            return View(_res);
+        }
+
         public ActionResult ViewStaticPageGet(int id)
         {
             _res = new Response();
@@ -71,6 +81,36 @@ namespace MVCBlog.UI.Controllers
             _res = _ops.GetStaticPageByIDFromRepo(id);
 
             return View(_res);
+        }
+
+        [HttpPost]
+        public ActionResult ApproveStaticPage(StaticPage staticPage)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.ApproveStaticPageToRepo(staticPage);
+            return RedirectToAction("Index", "StaticPage");
+        }
+
+        [HttpPost]
+        public ActionResult UnapproveStaticPage(StaticPage staticPage)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.UnapproveStaticPageToRepo(staticPage);
+            return RedirectToAction("Index", "StaticPage");
+        }
+
+        [HttpPost]
+        public ActionResult ArchiveStaticPage(StaticPage staticPage)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.ArchiveStaticPageToRepo(staticPage);
+            return RedirectToAction("Index", "StaticPage");
         }
     }
 }
