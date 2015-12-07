@@ -40,6 +40,52 @@ namespace MVCBlog.UI.Controllers
             return View(blogPostVM);
         }
 
+        [HttpPost]
+        public ActionResult CreatePostPost(BlogPostVM blogPostVM)
+        {
+            _ops = new MVCBlogOps();
+
+            var blogPost = new BlogPost();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            if (User.IsInRole("Admin"))
+            {
+                // TODO: simplify this, inspect blogPost.Status
+                blogPostVM.blogPost.Status = 1; // 1 is Approved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+            else
+            {
+                blogPostVM.blogPost.Status = 2; // 2 is Unapproved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+
+            blogPost.User.UserID = user.Id;
+            blogPost.Title = blogPostVM.blogPost.Title;
+            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
+            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
+
+            if (blogPostVM.tags == null)
+            {
+                HashTag hashTag = new HashTag();
+                hashTag.HashTagName = "#freshfoods";
+                blogPost.HashTags.Add(hashTag);
+            }
+            else
+            {
+                foreach (var item in blogPostVM.tags)
+                {
+                    HashTag hashTag = new HashTag();
+                    hashTag.HashTagName = item;
+                    blogPost.HashTags.Add(hashTag);
+                }
+            }
+            
+            _ops.SaveBlogPostToRepo(blogPost);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult EditPostGet(int id)
         {
             _res = new Response();
@@ -100,61 +146,10 @@ namespace MVCBlog.UI.Controllers
 
             _ops.SaveBlogPostToRepo(blogPost);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
 
 
         }
-
-
-
-
-        [HttpPost]
-        public ActionResult CreatePostPost(BlogPostVM blogPostVM)
-        {
-            _ops = new MVCBlogOps();
-
-            var blogPost = new BlogPost();
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            if (User.IsInRole("Admin"))
-            {
-                // TODO: simplify this, inspect blogPost.Status
-                blogPostVM.blogPost.Status = 1; // 1 is Approved
-                blogPost.Status = blogPostVM.blogPost.Status;
-            }
-            else
-            {
-                blogPostVM.blogPost.Status = 2; // 2 is Unapproved
-                blogPost.Status = blogPostVM.blogPost.Status;
-            }
-
-            blogPost.User.UserID = user.Id;
-            blogPost.Title = blogPostVM.blogPost.Title;
-            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
-            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
-
-            if (blogPostVM.tags == null)
-            {
-                HashTag hashTag = new HashTag();
-                hashTag.HashTagName = "#freshfoods";
-                blogPost.HashTags.Add(hashTag);
-            }
-            else
-            {
-                foreach (var item in blogPostVM.tags)
-                {
-                    HashTag hashTag = new HashTag();
-                    hashTag.HashTagName = item;
-                    blogPost.HashTags.Add(hashTag);
-                }
-            }
-            
-            _ops.SaveBlogPostToRepo(blogPost);
-
-            return RedirectToAction("Index");
-        }
-
-      
 
 
         [Authorize(Roles = "Admin")]

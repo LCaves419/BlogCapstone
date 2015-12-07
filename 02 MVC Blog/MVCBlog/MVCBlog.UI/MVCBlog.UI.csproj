@@ -448,6 +448,8 @@
     <Content Include="Views\Home\ViewPostsByHashTag.cshtml" />
     <Content Include="Views\Home\EditPostGet.cshtml" />
     <Content Include="Views\StaticPage\Index.cshtml" />
+    <Content Include="Views\StaticPage\CreateStaticPageGet.cshtml" />
+    <Content Include="Views\StaticPage\ViewStaticPageGet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

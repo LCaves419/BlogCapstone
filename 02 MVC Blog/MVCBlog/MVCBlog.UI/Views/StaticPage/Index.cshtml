@@ -8,19 +8,10 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
-
-
+            
             @foreach (var page in Model)
             {
-                <h3><a href="/Home/ViewStaticPageGet/@page.StaticPageID">@page.Title</a></h3>
-                @*<blockquote class="blockquote-reverse">
-                    <p>@page.Date.ToString("MM/dd/yyyy")</p>
-                
-                    <p>@Html.Raw(@page.Mce.Body).</p>
-                 
-                    <small>Fresh Finds Family <cite title="Source Title"></cite></small>
-                </blockquote>*@
-
+                <h3><a href="/StaticPage/ViewStaticPageGet/@page.StaticPageID">@page.Title</a></h3>
             }
         </table>
     </div>

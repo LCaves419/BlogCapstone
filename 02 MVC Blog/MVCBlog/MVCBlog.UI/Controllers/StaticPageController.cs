@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MVCBlog.BLL;
 using MVCBlog.Models;
+using MVCBlog.UI.Models;
 
 namespace MVCBlog.UI.Controllers
 {
@@ -25,6 +28,49 @@ namespace MVCBlog.UI.Controllers
             return View(pages);
         }
 
+        public ActionResult CreateStaticPageGet()
+        {
+            _res = new Response();
 
+            return View(_res);
+        }
+
+        [HttpPost]
+        public ActionResult CreateStaticPagePost(Response response)
+        {
+            _ops = new MVCBlogOps();
+
+            var staticPage = new StaticPage();
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            if (User.IsInRole("Admin"))
+            {
+                // TODO: simplify this, inspect blogPost.Status
+                staticPage.Status = 1; // 1 is Approved
+            }
+            else
+            {
+                staticPage.Status = 2; // 2 is Unapproved
+            }
+
+            staticPage.UserID = user.Id;
+            staticPage.Title = response.StaticPage.Title;
+            staticPage.Mce.Body = response.StaticPage.Mce.Body;
+
+            _ops.SaveStaticPageToRepo(staticPage);
+
+            return RedirectToAction("Index", "StaticPage");
+        }
+
+        public ActionResult ViewStaticPageGet(int id)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.GetStaticPageByIDFromRepo(id);
+
+            return View(_res);
+        }
     }
 }
