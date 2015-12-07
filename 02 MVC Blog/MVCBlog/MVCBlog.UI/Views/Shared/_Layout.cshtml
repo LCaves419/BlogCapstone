@@ -26,19 +26,19 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Approve Posts", "ApprovePostsGet", "Home")</li>
                         <li>@Html.ActionLink("Add a Post", "CreatePostGet", "Home")</li>
-
+                        <li>@Html.ActionLink("Approve Posts", "ApprovePostsGet", "Home")</li>
+                        <li>@Html.ActionLink("Approve Pages", "ApproveStaticPagesGet", "StaticPage")</li>
                     }
                     else if (User.IsInRole("Public Relations"))
                     {
                         <li>@Html.ActionLink("Add a Post", "CreatePostGet", "Home")</li>
                     }
 
-
+                    <li>@Html.ActionLink("Pages", "Index", "StaticPage")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Pages", "Index", "StaticPage")</li>
+                    
 
                 </ul>
                 @Html.Partial("_LoginPartial")

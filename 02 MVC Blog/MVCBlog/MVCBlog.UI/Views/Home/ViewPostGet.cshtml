@@ -36,23 +36,24 @@
         @using (Html.BeginForm("ApprovePost", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
-            <button id="ApprovePost" type="submit" class="btn btn-primary">Approve</button>
+            <button id="ApprovePost" type="submit" class="btn btn-success">Approve</button>
         }
     </div>
-    <div class="col-xs-9">
-        @using (Html.BeginForm("ArchivePost", "Home", FormMethod.Post))
-        {
-            @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
-            <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
-        }
-    </div>
-    <div class="col-xs-9">
+    <div class="col-xs-3">
         @using (Html.BeginForm("EditPostGet", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
             <button id="EditPostGet" type="submit" class="btn btn-warning">Edit</button>
         }
     </div>
+    <div class="col-xs-6">
+        @using (Html.BeginForm("ArchivePost", "Home", FormMethod.Post))
+        {
+            @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
+            <button id="ArchivePost" type="submit" class="btn btn-danger">Archive</button>
+        }
+    </div>
+    
 
 }
 

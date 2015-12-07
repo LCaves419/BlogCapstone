@@ -31,23 +31,24 @@
             @using (Html.BeginForm("ApproveStaticPage", "StaticPage", FormMethod.Post))
             {
                 @Html.Hidden("StaticPageID", Model.StaticPage.StaticPageID)
-                <button id="ApprovePost" type="submit" class="btn btn-primary">Approve</button>
+                <button id="ApproveStaticPage" type="submit" class="btn btn-primary">Approve</button>
             }
         </div>
-        <div class="col-xs-9">
-            @using (Html.BeginForm("ArchiveStaticPage", "StaticPage", FormMethod.Post))
-            {
-                @Html.Hidden("StaticPageID", Model.StaticPage.StaticPageID)
-                <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
-            }
-        </div>
-        <div class="col-xs-9">
+        <div class="col-xs-3">
             @using (Html.BeginForm("EditStaticPageGet", "StaticPage", FormMethod.Post))
             {
                 @Html.Hidden("StaticPageID", Model.StaticPage.StaticPageID)
                 <button id="EditStaticPageGet" type="submit" class="btn btn-warning">Edit</button>
             }
         </div>
+        <div class="col-xs-6">
+            @using (Html.BeginForm("ArchiveStaticPage", "StaticPage", FormMethod.Post))
+            {
+                @Html.Hidden("StaticPageID", Model.StaticPage.StaticPageID)
+                <button id="ArchiveStaticPage" type="submit" class="btn btn-danger">Archive</button>
+            }
+        </div>
+        
 
     }
 
