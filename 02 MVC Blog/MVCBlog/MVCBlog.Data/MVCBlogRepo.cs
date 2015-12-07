@@ -82,7 +82,6 @@ namespace MVCBlog.Data
         {
             var posts = GetAllBlogPosts().Where(i => i.Status == 1).ToList();
             return posts;
-
         }
 
         public List<BlogPost> GetAllUnapprovedBlogPosts()
@@ -107,7 +106,6 @@ namespace MVCBlog.Data
         {
             var posts = GetAllBlogPosts().Where(i => i.Category.CategoryID == id).ToList();
 
-
             return posts;
 
         }
@@ -118,6 +116,26 @@ namespace MVCBlog.Data
             {
                 return cn.Query<HashTag>("GetAllHashTags", commandType: CommandType.StoredProcedure).ToList();
             }
+        }
+
+        public List<BlogPost> GetAllBlogPostsByHashTag(int id)
+        {
+            var oldPosts = GetAllBlogPosts();
+            var newPosts = new List<BlogPost>();
+
+            foreach (var post in oldPosts)
+            {
+                foreach (var hashTag in post.HashTags)
+                {
+                    if (hashTag.HashTagID == id)
+                    {
+                        newPosts.Add(post);
+                    }
+                }
+
+            }
+
+            return newPosts;
         }
 
         public void ApproveBlogPostDB(BlogPost blogPost)

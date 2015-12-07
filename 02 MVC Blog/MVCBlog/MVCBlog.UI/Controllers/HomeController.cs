@@ -160,6 +160,16 @@ namespace MVCBlog.UI.Controllers
             return View(_res.BlogPosts);
         }
 
+        public ActionResult ViewPostsByHashTag(int id)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+
+            _res = _ops.GetAllBlogPostsByHashTagFromRepo(id);
+
+            return View(_res.BlogPosts);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

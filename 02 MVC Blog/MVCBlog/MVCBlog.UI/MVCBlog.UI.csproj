@@ -444,6 +444,7 @@
     <Content Include="Views\Home\ApprovePostsGet.cshtml" />
     <Content Include="Views\Home\ViewPostGet.cshtml" />
     <Content Include="Views\Home\ViewPostsByCategory.cshtml" />
+    <Content Include="Views\Home\ViewPostsByHashTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -78,7 +78,7 @@
 
                     @foreach (var name in post.HashTags)
                     {
-                        <span>@name.HashTagName </span>
+                        <a href="/Home/ViewPostsByHashTag/@name.HashTagID"><span>@name.HashTagName </span></a>
                     }
                     <small>Fresh Finds Family <cite title="Source Title"></cite></small>
                 </blockquote>

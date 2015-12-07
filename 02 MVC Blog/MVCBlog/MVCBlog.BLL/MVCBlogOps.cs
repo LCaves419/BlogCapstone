@@ -47,7 +47,22 @@ namespace MVCBlog.BLL
             return _response;
         }
 
+        public Response GetAllBlogPostsByHashTagFromRepo(int id)
+        {
+            _response = new Response();
+            var posts = _repo.GetAllBlogPostsByHashTag(id);
 
+            if (posts != null)
+            {
+                _response.Success = true;
+                _response.BlogPosts = posts;
+                return _response;
+            }
+
+            _response.Success = false;
+            _response.Message = "That is not valid data";
+            return _response;
+        }
 
         public Response GetAllApprovedBlogPostsFromRepo()
         {
