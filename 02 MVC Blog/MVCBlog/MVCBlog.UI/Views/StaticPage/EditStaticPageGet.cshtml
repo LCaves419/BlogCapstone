@@ -1,0 +1,40 @@
+﻿@model MVCBlog.Models.Response
+@{
+    ViewBag.Title = "EditStaticPageGet";
+}
+
+<h2>Edit a Static Page</h2>
+
+<div class="container">
+    @using (Html.BeginForm("EditStaticPagePost", "StaticPage", FormMethod.Post))
+    {
+        //@Html.AntiForgeryToken()
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+                @*<input type="text" class="form-control" name="title" placeholder="Title"/>*@
+                @Html.TextBoxFor(model => model.StaticPage.Title, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <!-- This will contain your HtmlContent and use the TinyMCE editor-->
+                @Html.TextAreaFor(model => model.StaticPage.Mce.Body, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <script src="~/scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/other/tinymce.js" type="text/javascript" charset="utf-8"></script>
+}

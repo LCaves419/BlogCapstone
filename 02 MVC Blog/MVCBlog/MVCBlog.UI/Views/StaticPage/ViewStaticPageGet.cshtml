@@ -35,11 +35,7 @@
             }
         </div>
         <div class="col-xs-3">
-            @using (Html.BeginForm("EditStaticPageGet", "StaticPage", FormMethod.Post))
-            {
-                @Html.Hidden("StaticPageID", Model.StaticPage.StaticPageID)
-                <button id="EditStaticPageGet" type="submit" class="btn btn-warning">Edit</button>
-            }
+            @Html.ActionLink("Edit a Page", "EditStaticPageGet" + "/" + @Model.StaticPage.StaticPageID, "StaticPage", null, new { @class="btn btn-warning"})
         </div>
         <div class="col-xs-6">
             @using (Html.BeginForm("ArchiveStaticPage", "StaticPage", FormMethod.Post))

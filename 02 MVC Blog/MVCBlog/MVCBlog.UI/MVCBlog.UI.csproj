@@ -451,6 +451,7 @@
     <Content Include="Views\StaticPage\CreateStaticPageGet.cshtml" />
     <Content Include="Views\StaticPage\ViewStaticPageGet.cshtml" />
     <Content Include="Views\StaticPage\ApproveStaticPagesGet.cshtml" />
+    <Content Include="Views\StaticPage\EditStaticPageGet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
