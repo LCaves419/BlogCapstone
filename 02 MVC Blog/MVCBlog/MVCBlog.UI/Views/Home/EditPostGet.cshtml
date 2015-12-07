@@ -22,7 +22,12 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">HashTags</label>
             <div class="col-lg-10">
-                <ul id="myTags"></ul>
+                <ul id="myTags">
+                    @*@foreach (var tag in Model.blogPost.HashTags)
+                    {
+                        <span>@tag.HashTagName </span>
+                    }*@
+                </ul>
             </div>
         </div>
 

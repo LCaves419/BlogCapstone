@@ -61,9 +61,23 @@ namespace MVCBlog.UI.Controllers
             BlogPostVM blogPostVM = new BlogPostVM();
 
             _res = _ops.GetBlogPostByIDFromRepo(id);
-
             blogPostVM.blogPost = _res.BlogPost;
+
+            //blogPostVM.blogPost.BlogPostID = _res.BlogPost.BlogPostID;
+            //blogPostVM.blogPost.Title = _res.BlogPost.Title;
+            //blogPostVM.blogPost.PostDate = _res.BlogPost.PostDate;
+
+            blogPostVM.blogPost.HashTags = _res.BlogPost.HashTags;
+            blogPostVM.blogPost.Mce.Body = _res.BlogPost.Body;
+            blogPostVM.blogPost.Category = _res.BlogPost.Category;
+            //blogPostVM.blogPost.Status = _res.BlogPost.Status;
+            //blogPostVM.blogPost.User.UserID = _res.BlogPost.User.UserID;
+            //blogPostVM.blogPost.User.UserName = _res.BlogPost.User.UserName;
+
+
+
             blogPostVM.CreateCategoriesList(_ops.GetAllCategoriesFromRepo().Categories);
+
 
             ////TODO: move me to edit
             //blogPostVM.blogPost = new BlogPost()
@@ -78,7 +92,53 @@ namespace MVCBlog.UI.Controllers
 
             return View(blogPostVM);
         }
+        [HttpPost]
+        public ActionResult EditPostPost(BlogPostVM blogPostVM)
+        {
+            _ops = new MVCBlogOps();
 
+            var blogPost = new BlogPost();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            if (User.IsInRole("Admin"))
+            {
+                // TODO: simplify this, inspect blogPost.Status
+                blogPostVM.blogPost.Status = 1; // 1 is Approved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+            else
+            {
+                blogPostVM.blogPost.Status = 2; // 2 is Unapproved
+                blogPost.Status = blogPostVM.blogPost.Status;
+            }
+
+            blogPost.User.UserID = user.Id;
+            blogPost.Title = blogPostVM.blogPost.Title;
+            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
+            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
+
+            if (blogPostVM.tags == null)
+            {
+                HashTag hashTag = new HashTag();
+                hashTag.HashTagName = "#freshfoods";
+                blogPost.HashTags.Add(hashTag);
+            }
+            else
+            {
+                foreach (var item in blogPostVM.tags)
+                {
+                    HashTag hashTag = new HashTag();
+                    hashTag.HashTagName = item;
+                    blogPost.HashTags.Add(hashTag);
+                }
+            }
+
+            _ops.SaveBlogPostToRepo(blogPost);
+
+            return RedirectToAction("Index");
+
+
+        }
 
 
 
