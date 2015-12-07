@@ -46,6 +46,13 @@
             <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
         }
     </div>
+    <div class="col-xs-9">
+        @using (Html.BeginForm("EditPostGet", "Home", FormMethod.Post))
+        {
+            @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
+            <button id="ArchivePost" type="submit" class="btn btn-warning">Archive</button>
+        }
+    </div>
 
 }
 

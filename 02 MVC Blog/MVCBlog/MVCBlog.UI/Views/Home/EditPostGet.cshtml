@@ -1,0 +1,59 @@
+﻿
+@model MVCBlog.UI.Models.BlogPostVM
+@{
+    ViewBag.Title = "EditPostGet";
+}
+
+<h2>Edit a Post</h2>
+
+<div class="container">
+    <!-- This will automatically post to your Index method (that is decorated with a HttpPost attribute) -->
+    @using (Html.BeginForm("EditPostPost", "Home", FormMethod.Post))
+    {
+        //@Html.AntiForgeryToken()
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+                @*<input type="text" class="form-control" name="title" placeholder="Title"/>*@
+                @Html.TextBoxFor(model => model.blogPost.Title, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">HashTags</label>
+            <div class="col-lg-10">
+                <ul id="myTags"></ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Category</label>
+            <div class="col-lg-10">
+                @Html.DropDownList("category.CategoryID", Model.categories, new { @class = "form-control" })
+            </div>
+        </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <!-- This will contain your HtmlContent and use the TinyMCE editor-->
+                    @Html.TextAreaFor(model => model.blogPost.Mce.Body, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+    }
+</div>
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <script src="~/Scripts/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/other/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/other/tinymce.js" type="text/javascript" charset="utf-8"></script>
+
+}

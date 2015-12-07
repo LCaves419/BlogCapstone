@@ -13,7 +13,13 @@ namespace MVCBlog.UI.Models
         public BlogPost blogPost { get; set; }
         public Category category { get; set; }
         public List<SelectListItem> categories { get; set; }
-        public List<string> tags { get; set; } 
+        public List<string> tags { get; set; }
+
+        public BlogPostVM()
+        {
+            blogPost = new BlogPost();
+            category = new Category();
+        } 
 
         public void CreateCategoriesList(List<Category> categoriesList)
         {

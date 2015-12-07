@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MVCBlog.BLL;
@@ -48,8 +49,39 @@ namespace MVCBlog.UI.Controllers
             _res = _ops.GetAllCategoriesFromRepo();
             blogPostVM.CreateCategoriesList(_res.Categories);
 
+           
+
             return View(blogPostVM);
         }
+
+        public ActionResult EditPostGet(int id)
+        {
+            _res = new Response();
+            _ops = new MVCBlogOps();
+            BlogPostVM blogPostVM = new BlogPostVM();
+
+            _res = _ops.GetBlogPostByIDFromRepo(id);
+
+            blogPostVM.blogPost = _res.BlogPost;
+            blogPostVM.CreateCategoriesList(_ops.GetAllCategoriesFromRepo().Categories);
+
+            ////TODO: move me to edit
+            //blogPostVM.blogPost = new BlogPost()
+            //{
+            //    BlogPostID = blogPostVM.blogPost.BlogPostID,
+
+            //    Mce = new TinyMceClass()
+            //    {
+            //        Body = "will this populate..."
+            //    }
+            //};
+
+            return View(blogPostVM);
+        }
+
+
+
+
 
         [HttpPost]
         public ActionResult CreatePostPost(BlogPostVM blogPostVM)
@@ -96,6 +128,8 @@ namespace MVCBlog.UI.Controllers
 
             return RedirectToAction("Index");
         }
+
+      
 
 
         [Authorize(Roles = "Admin")]
