@@ -99,6 +99,7 @@ namespace MVCBlog.UI.Controllers
             staticPage.Mce.Body = response.StaticPage.Mce.Body;
 
             _ops.SaveStaticPageToRepo(staticPage);
+            _ops.ArchiveStaticPageToRepo(staticPage);
 
             return RedirectToAction("Index", "StaticPage");
         }

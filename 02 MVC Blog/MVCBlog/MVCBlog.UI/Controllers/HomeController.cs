@@ -145,6 +145,7 @@ namespace MVCBlog.UI.Controllers
             }
 
             _ops.SaveBlogPostToRepo(blogPost);
+            _ops.ArchiveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index", "Home");
 

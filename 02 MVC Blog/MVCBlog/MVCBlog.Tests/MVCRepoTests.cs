@@ -74,17 +74,6 @@ namespace MVCBlog.Tests
             Assert.AreEqual(expected, repo.GetAllHashTags().Count());
         }
 
-        [TestCase(true, 2, true)]
-        [TestCase(true, 95, false)]
-        public void GetBlogPostByID_Response_ReturnResponse(bool input, int n, bool expectedResult)
-        {
-            var ops = new MVCBlogOps();
-
-            var result = ops.GetBlogPostByIDFromRepo(n);
-
-            Assert.AreEqual(expectedResult, result.Success);
-        }
-
         [Test]
         public void GetAllApprovedBlogPosts_CheckCount()
         {
@@ -140,6 +129,63 @@ namespace MVCBlog.Tests
 
             var repo = new MVCBlogRepo();
             Assert.AreEqual(expected, repo.GetAllArchivedBlogPosts().Count());
+        }
+
+        [Test]
+        public void GetAllApprovedStaticPages_CheckCount()
+        {
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = "SELECT COUNT(StaticPageID) FROM StaticPages WHERE [Status] = 1";
+                cmd.Connection = cn;
+
+                cn.Open();
+
+                expected = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            var repo = new MVCBlogRepo();
+            Assert.AreEqual(expected, repo.GetAllApprovedStaticPages().Count());
+        }
+
+        [Test]
+        public void GetAllUnapprovedStaticPages_CheckCount()
+        {
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = "SELECT COUNT(StaticPageID) FROM StaticPages WHERE [Status] = 2";
+                cmd.Connection = cn;
+
+                cn.Open();
+
+                expected = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            var repo = new MVCBlogRepo();
+            Assert.AreEqual(expected, repo.GetAllUnapprovedStaticPages().Count());
+        }
+
+        [Test]
+        public void GetAllArchivedStaticPages_CheckCount()
+        {
+            int expected;
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = "SELECT COUNT(StaticPageID) FROM StaticPages WHERE [Status] = 3";
+                cmd.Connection = cn;
+
+                cn.Open();
+
+                expected = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            var repo = new MVCBlogRepo();
+            Assert.AreEqual(expected, repo.GetAllArchivedStaticPages().Count());
         }
     }
 }

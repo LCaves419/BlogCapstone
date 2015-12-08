@@ -40,11 +40,12 @@
         }
     </div>
     <div class="col-xs-3">
-        @using (Html.BeginForm("EditPostGet", "Home", FormMethod.Post))
+        @Html.ActionLink("Edit", "EditPostGet" + "/" + @Model.BlogPost.BlogPostID, "Home", null, new { @class="btn btn-warning"})
+        @*@using (Html.BeginForm("EditPostGet", "Home", FormMethod.Post))
         {
             @Html.Hidden("BlogPostID", Model.BlogPost.BlogPostID)
             <button id="EditPostGet" type="submit" class="btn btn-warning">Edit</button>
-        }
+        }*@
     </div>
     <div class="col-xs-6">
         @using (Html.BeginForm("ArchivePost", "Home", FormMethod.Post))
