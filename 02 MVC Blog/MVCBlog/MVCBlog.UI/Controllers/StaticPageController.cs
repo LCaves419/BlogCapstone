@@ -70,6 +70,7 @@ namespace MVCBlog.UI.Controllers
 
             _res = _ops.GetStaticPageByIDFromRepo(id);
 
+            _ops.ArchiveStaticPageToRepo(_res.StaticPage);
 
             return View(_res);
         }
@@ -99,7 +100,6 @@ namespace MVCBlog.UI.Controllers
             staticPage.Mce.Body = response.StaticPage.Mce.Body;
 
             _ops.SaveStaticPageToRepo(staticPage);
-            _ops.ArchiveStaticPageToRepo(staticPage);
 
             return RedirectToAction("Index", "StaticPage");
         }
