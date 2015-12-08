@@ -100,15 +100,19 @@ namespace MVCBlog.UI.Controllers
             blogPostVM.blogPost.Category = _res.BlogPost.Category;
             blogPostVM.CreateCategoriesList(_ops.GetAllCategoriesFromRepo().Categories);
 
+            _ops.ArchiveBlogPostToRepo(blogPostVM.blogPost);//
+
             return View(blogPostVM);
         }
 
         [HttpPost]
         public ActionResult EditPostPost(BlogPostVM blogPostVM)
         {
+            
             _ops = new MVCBlogOps();
 
             var blogPost = new BlogPost();
+
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = userManager.FindById(User.Identity.GetUserId());
             if (User.IsInRole("Admin"))
@@ -144,8 +148,9 @@ namespace MVCBlog.UI.Controllers
                 }
             }
 
+           
+
             _ops.SaveBlogPostToRepo(blogPost);
-            _ops.ArchiveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index", "Home");
 
