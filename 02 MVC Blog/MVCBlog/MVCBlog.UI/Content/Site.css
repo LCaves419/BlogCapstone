@@ -1,32 +1,18 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #CCFFCC;
-    font-family: "Lucida Grande";
+    background: #333;
+    color: #f0f0f0;
 }
 
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.logo {
+    padding: 15px 0;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.navbar {
+    background: #f4f4f4;
 }
 /*--------------------------------------------------------------------------------------*/
-.navbar-default {
+/*.navbar-default {
     background-color: #228b22;
     border-color: #228b22;
 }
@@ -41,7 +27,7 @@ textarea {
 }
 
 /* link */
-.navbar-default .navbar-nav > li > a {
+/*.navbar-default .navbar-nav > li > a {
     color: #fdf5e6;
 }
 .navbar-default .navbar-nav > li > a:hover,
@@ -62,6 +48,7 @@ textarea {
     background-color: #fdf5e6;
 }
 /* caret */
+/*
 .navbar-default .navbar-nav > .dropdown > a .caret {
     border-top-color: #fdf5e6;
     border-bottom-color: #fdf5e6;
@@ -76,8 +63,9 @@ textarea {
 .navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #555;
     border-bottom-color: #555;
-}
+}*/
 /* mobile version */
+/*
 .navbar-default .navbar-toggle {
     border-color: #DDD;
 }
@@ -87,15 +75,17 @@ textarea {
 }
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #CCC;
-}
+}*/
 
 /*This changes the Drop-Down list hover!!!!!!!!!!!!!!!*/
+/*
 .dropdown-menu>li>a:hover {
    color: #262626;
    text-decoration: none;
    background-color: #228b22;
-}
-
+}*/
+/*---------------------------------------------------------*/
+/*
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #fdf5e6;
@@ -112,12 +102,92 @@ textarea {
     color: #165e14;
     font-weight: 700;
      border-image: url(border.png) 30 stretch;
+}*/
+
+
+
+
+/*--------------------------------Carousel----------------------------------------------------------------------*/
+#myCarousel {
+    margin-bottom: 20px;
 }
 
-#borderimg { 
-    border: 10px solid transparent;
-    padding: 15px;
-    -webkit-border-image: url(border.png) 30 stretch; /* Safari 3.1-5 */
-    -o-border-image: url(border.png) 30 stretch; /* Opera 11-12.1 */
-    border-image: url(border.png) 30 stretch;
+    #myCarousel .carousel-caption {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: left;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        text-shadow: none;
+    }
+
+        #myCarousel .carousel-caption h4 {
+            color: #fff;
+        }
+
+        #myCarousel .carousel-caption p {
+            padding: 0;
+            margin: 0;
+        }
+
+    #myCarousel .list-group {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    #myCarousel .list-group-item {
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    #myCarousel .list-group .active {
+        background: #eee;
+        border: 0;
+        color: #666;
+    }
+
+    #myCarousel .list-group h4 {
+        font-size: 17px;
+        padding: 0 !important;
+        margin: 0 !important;
+        padding-top: 5px;
+    }
+
+    #myCarousel .img-slide {
+        width: 100px;
+        height: 100%;
+        float: left;
+        margin-right: 5px;
+    }
+
+.post-info {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+@media(min-width: 992px) {
+    #myCarousel {
+        padding-right: 33.3333%;
+    }
+
+        #myCarousel .carousel-controls {
+            display: none;
+        }
+}
+
+@media(max-width: 991px) {
+    .carousel-caption p,
+    #myCarousel .list-group {
+        display: none;
+    }
+}
+
+@media(max-width: 1200px) {
+    .slider-list p {
+        display: none;
+    }
 }
