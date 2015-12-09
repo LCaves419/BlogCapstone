@@ -11,7 +11,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="~/Content/images/slide1.jpg" alt="Slide 1">
+                <img src="~/Content/images/tomato.jpg" alt="Slide 1">
                 <div class="carousel-caption">
                     <h4><a href="post.html">Slide Story 1</a></h4>
                     Nulla commodo egestas est, quis aliquet tortor luctus vel. Nulla in suscipit sapien. Fusce ut velit sit amet magna imperdiet molestie ut ut libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean malesuada aliquam elit, at convallis nisl condimentum id. Vestibulum at ultrices orci.
@@ -19,7 +19,7 @@
             </div><!-- Item End -->
 
             <div class="item">
-                <img src="~/Content/images/slide2.jpg" alt="Slide 2">
+                <img src="~/Content/images/apple760.jpg" alt="Slide 2">
                 <div class="carousel-caption">
                     <h4><a href="post.html">Slide Story 2</a></h4>
                     Pellentesque feugiat erat sed felis fermentum, quis dapibus elit vestibulum. Ut justo justo, lobortis quis nisi sit amet, tincidunt luctus risus. Praesent mollis, enim vel consequat sollicitudin, ligula turpis lobortis ligula, quis tincidunt nulla enim nec mauris. Sed ipsum ligula, convallis aliquam risus vitae, posuere tincidunt metus. Aenean sit amet laoreet velit.
@@ -27,7 +27,7 @@
             </div><!-- Item End -->
 
             <div class="item">
-                <img src="~/Content/images/slide3.jpg" alt="Slide 3">
+                <img src="~/Content/images/Cookies-760x400.jpg" alt="Slide 3">
                 <div class="carousel-caption">
                     <h4><a href="post.html">Slide Story 3</a></h4>
                     Sed commodo quam sit amet nisi semper fringilla. Vivamus sed vulputate urna. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mollis eget ipsum nec lacinia. Vestibulum fermentum imperdiet massa maximus finibus.
@@ -35,7 +35,7 @@
             </div><!-- Item End -->
 
             <div class="item">
-                <img src="~/Content/images/slide4.jpg" alt="Slide 4">
+                <img src="~/Content/images/sunflowers-760x400.jpg" alt="Slide 4">
                 <div class="carousel-caption">
                     <h4><a href="post.html">Slide Story 4</a></h4>
                     Morbi nec massa rhoncus leo egestas tristique non at diam. Proin vel eros accumsan, ornare lorem id, interdum dolor. Sed commodo quam sit amet nisi semper fringilla. Vivamus sed vulputate urna. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mollis eget ipsum nec lacinia. Vestibulum fermentum imperdiet massa maximus finibus.
@@ -43,7 +43,7 @@
             </div><!-- Item End -->
 
             <div class="item">
-                <img src="~/Content/images/slide5.jpg" alt="Slide 5">
+                <img src="~/Content/images/Petit760x400.jpg" alt="Slide 5">
                 <div class="carousel-caption">
                     <h4><a href="post.html">Slide Story 5</a></h4>
                     Quisque ultrices interdum tellus ut molestie. Donec sit amet felis elit. Phasellus tincidunt elementum quam, ut tempus purus. Nulla leo erat, consequat vulputate nisi quis, pellentesque ultrices quam. Ut ornare efficitur euismod. Aliquam eget metus maximus, tempus elit vel, pharetra lectus. Phasellus nec lacus nec eros ornare mollis.
@@ -53,23 +53,23 @@
 
         <ul class="list-group slider-list col-md-4">
             <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active">
-                <img src="~/Content/images/slide1.jpg" class="img-thumbnail img-slide"><h4>Slide Story 1</h4>
+                <img src="~/Content/images/tomato.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 1</h4>
                 <p>Sed auctor at orci in eleifend in eleifend quam tare.</p>
             </li>
             <li data-target="#myCarousel" data-slide-to="1" class="list-group-item">
-                <img src="~/Content/images/slide2.jpg" class="img-thumbnail img-slide"><h4>Slide Story 2</h4>
+                <img src="~/Content/images/apple760.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 2</h4>
                 <p>Maecenas commodo diam nec justo scelerisque.</p>
             </li>
             <li data-target="#myCarousel" data-slide-to="2" class="list-group-item">
-                <img src="~/Content/images/slide3.jpg" class="img-thumbnail img-slide"><h4>Slide Story 3</h4>
+                <img src="~/Content/images/Cookies-760x400.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 3</h4>
                 <p>ligula turpis lobortis ligula, quis tincidunt nulla.</p>
             </li>
             <li data-target="#myCarousel" data-slide-to="3" class="list-group-item">
-                <img src="~/Content/images/slide4.jpg" class="img-thumbnail img-slide"><h4>Slide Story 4</h4>
+                <img src="~/Content/images/sunflowers-760x400.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 4</h4>
                 <p>Aenean non justo vel justo elementum rutrum.</p>
             </li>
             <li data-target="#myCarousel" data-slide-to="4" class="list-group-item">
-                <img src="~/Content/images/slide5.jpg" class="img-thumbnail img-slide"><h4>Slide Story 5</h4>
+                <img src="~/Content/images/Petit760x400.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 5</h4>
                 <p>Nunc elit lacus, placerat ac mollis a, hendrerit.</p>
             </li>
         </ul>
@@ -85,7 +85,7 @@
 
             @foreach (var post in Model)
             {
-                <h3><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
+                <h3 class="blogTitle"><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
                 @*<blockquote class="blockquote-reverse">*@
                 <div>
                     <p>@post.PostDate.Date.ToString("MM/dd/yyyy")</p>

@@ -185,15 +185,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\apple760.jpg" />
     <Content Include="Content\images\blog1.jpg" />
     <Content Include="Content\images\blog2.jpg" />
     <Content Include="Content\images\blog3.jpg" />
+    <Content Include="Content\images\Cookies-760x400.jpg" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\Petit760x400.jpg" />
     <Content Include="Content\images\slide1.jpg" />
     <Content Include="Content\images\slide2.jpg" />
     <Content Include="Content\images\slide3.jpg" />
     <Content Include="Content\images\slide4.jpg" />
     <Content Include="Content\images\slide5.jpg" />
+    <Content Include="Content\images\sunflowers-760x400.jpg" />
+    <Content Include="Content\images\tomato.jpg" />
     <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
