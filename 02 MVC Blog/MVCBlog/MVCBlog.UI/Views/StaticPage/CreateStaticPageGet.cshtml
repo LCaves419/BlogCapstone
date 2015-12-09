@@ -3,12 +3,13 @@
     ViewBag.Title = "CreateStaticPageGet";
 }
 
-<h2>Create a Static Page</h2>
+<h2>Create a Page</h2>
 
 <div class="container">
     @using (Html.BeginForm("CreateStaticPagePost", "StaticPage", FormMethod.Post))
     {
-        //@Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
         <div class="form-group">
             <label class="col-lg-2 control-label">Title</label>
             <div class="col-lg-10">
@@ -37,4 +38,6 @@
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <script src="~/scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/other/tinymce.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }

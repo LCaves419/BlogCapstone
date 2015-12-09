@@ -52,7 +52,7 @@
         </div><!-- carousel inner -->
 
         <ul class="list-group slider-list col-md-4">
-            <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active">
+            <li data-target="#myCarousel" data-slide-to="0" class="list-group-item">
                 <img src="~/Content/images/tomato.jpg" class="img-thumbnail img-slide portrait"><h4>Slide Story 1</h4>
                 <p>Sed auctor at orci in eleifend in eleifend quam tare.</p>
             </li>
@@ -85,7 +85,7 @@
 
             @foreach (var post in Model)
             {
-                <h3 class="blogTitle"><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
+                <h3><a href="/Home/ViewPostGet/@post.BlogPostID">@post.Title</a></h3>
                 @*<blockquote class="blockquote-reverse">*@
                 <div>
                     <p>@post.PostDate.Date.ToString("MM/dd/yyyy")</p>

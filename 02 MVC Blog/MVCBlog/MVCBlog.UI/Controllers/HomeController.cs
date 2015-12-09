@@ -44,43 +44,43 @@ namespace MVCBlog.UI.Controllers
         public ActionResult CreatePostPost(BlogPostVM blogPostVM)
         {
             _ops = new MVCBlogOps();
+        
+                var blogPost = new BlogPost();
+                var userManager =
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var user = userManager.FindById(User.Identity.GetUserId());
+                if (User.IsInRole("Admin"))
+                {
+                    blogPostVM.blogPost.Status = 1; // 1 is Approved
+                    blogPost.Status = blogPostVM.blogPost.Status;
+                }
+                else
+                {
+                    blogPostVM.blogPost.Status = 2; // 2 is Unapproved
+                    blogPost.Status = blogPostVM.blogPost.Status;
+                }
 
-            var blogPost = new BlogPost();
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            if (User.IsInRole("Admin"))
-            {
-                // TODO: simplify this, inspect blogPost.Status
-                blogPostVM.blogPost.Status = 1; // 1 is Approved
-                blogPost.Status = blogPostVM.blogPost.Status;
-            }
-            else
-            {
-                blogPostVM.blogPost.Status = 2; // 2 is Unapproved
-                blogPost.Status = blogPostVM.blogPost.Status;
-            }
+                blogPost.User.UserID = user.Id;
+                blogPost.Title = blogPostVM.blogPost.Title;
+                blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
+                blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
 
-            blogPost.User.UserID = user.Id;
-            blogPost.Title = blogPostVM.blogPost.Title;
-            blogPost.Mce.Body = blogPostVM.blogPost.Mce.Body;
-            blogPost.Category.CategoryID = blogPostVM.category.CategoryID;
-
-            if (blogPostVM.tags == null)
-            {
-                HashTag hashTag = new HashTag();
-                hashTag.HashTagName = "#freshfoods";
-                blogPost.HashTags.Add(hashTag);
-            }
-            else
-            {
-                foreach (var item in blogPostVM.tags)
+                if (blogPostVM.tags == null)
                 {
                     HashTag hashTag = new HashTag();
-                    hashTag.HashTagName = item;
+                    hashTag.HashTagName = "#freshfoods";
                     blogPost.HashTags.Add(hashTag);
                 }
-            }
-            
+                else
+                {
+                    foreach (var item in blogPostVM.tags)
+                    {
+                        HashTag hashTag = new HashTag();
+                        hashTag.HashTagName = item;
+                        blogPost.HashTags.Add(hashTag);
+                    }
+                }
+
             _ops.SaveBlogPostToRepo(blogPost);
 
             return RedirectToAction("Index", "Home");

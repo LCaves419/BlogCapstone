@@ -24,9 +24,9 @@
             <div class="col-lg-10">
                 <ul id="myTags">
                     @*@foreach (var tag in Model.blogPost.HashTags)
-                    {
-                        <span>@tag.HashTagName </span>
-                    }*@
+                        {
+                            <span>@tag.HashTagName </span>
+                        }*@
                 </ul>
             </div>
         </div>
@@ -38,12 +38,12 @@
             </div>
         </div>
 
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <!-- This will contain your HtmlContent and use the TinyMCE editor-->
-                    @Html.TextAreaFor(model => model.blogPost.Mce.Body, new { @class = "form-control" })
-                </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <!-- This will contain your HtmlContent and use the TinyMCE editor-->
+                @Html.TextAreaFor(model => model.blogPost.Mce.Body, new { @class = "form-control" })
             </div>
+        </div>
 
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
@@ -60,5 +60,7 @@
     <script src="~/scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/other/tag-it.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/Scripts/other/tinymce.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 }
